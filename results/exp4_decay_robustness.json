@@ -1,0 +1,132 @@
+{
+  "config": {
+    "shape": [
+      256,
+      256
+    ],
+    "rank": 8,
+    "sigma": 0.05,
+    "alpha": 0.05,
+    "gammas": [
+      0.0,
+      0.5,
+      1.0,
+      1.5,
+      2.0,
+      3.0
+    ],
+    "cheats": [
+      0.5,
+      0.75,
+      0.9,
+      1.0
+    ],
+    "pool_rounds": [
+      5
+    ]
+  },
+  "rows": [
+    {
+      "pool_rounds": 5,
+      "gamma": 0.0,
+      "n_sv_below_floor": 0,
+      "flat": {
+        "power_c0.5": 1.0,
+        "power_c0.75": 1.0,
+        "power_c0.9": 1.0,
+        "false_alarm": 0.02666666666666667
+      },
+      "matched": {
+        "power_c0.5": 1.0,
+        "power_c0.75": 1.0,
+        "power_c0.9": 1.0,
+        "false_alarm": 0.02666666666666667
+      }
+    },
+    {
+      "pool_rounds": 5,
+      "gamma": 0.5,
+      "n_sv_below_floor": 0,
+      "flat": {
+        "power_c0.5": 1.0,
+        "power_c0.75": 1.0,
+        "power_c0.9": 1.0,
+        "false_alarm": 0.02666666666666667
+      },
+      "matched": {
+        "power_c0.5": 1.0,
+        "power_c0.75": 1.0,
+        "power_c0.9": 1.0,
+        "false_alarm": 0.02666666666666667
+      }
+    },
+    {
+      "pool_rounds": 5,
+      "gamma": 1.0,
+      "n_sv_below_floor": 0,
+      "flat": {
+        "power_c0.5": 1.0,
+        "power_c0.75": 1.0,
+        "power_c0.9": 1.0,
+        "false_alarm": 0.02666666666666667
+      },
+      "matched": {
+        "power_c0.5": 1.0,
+        "power_c0.75": 1.0,
+        "power_c0.9": 1.0,
+        "false_alarm": 0.02666666666666667
+      }
+    },
+    {
+      "pool_rounds": 5,
+      "gamma": 1.5,
+      "n_sv_below_floor": 0,
+      "flat": {
+        "power_c0.5": 1.0,
+        "power_c0.75": 1.0,
+        "power_c0.9": 1.0,
+        "false_alarm": 0.02666666666666667
+      },
+      "matched": {
+        "power_c0.5": 1.0,
+        "power_c0.75": 1.0,
+        "power_c0.9": 1.0,
+        "false_alarm": 0.02666666666666667
+      }
+    },
+    {
+      "pool_rounds": 5,
+      "gamma": 2.0,
+      "n_sv_below_floor": 0,
+      "flat": {
+        "power_c0.5": 1.0,
+        "power_c0.75": 1.0,
+        "power_c0.9": 1.0,
+        "false_alarm": 0.02666666666666667
+      },
+      "matched": {
+        "power_c0.5": 1.0,
+        "power_c0.75": 1.0,
+        "power_c0.9": 1.0,
+        "false_alarm": 0.02666666666666667
+      }
+    },
+    {
+      "pool_rounds": 5,
+      "gamma": 3.0,
+      "n_sv_below_floor": 3,
+      "flat": {
+        "power_c0.5": 1.0,
+        "power_c0.75": 1.0,
+        "power_c0.9": 1.0,
+        "false_alarm": 1.0
+      },
+      "matched": {
+        "power_c0.5": 1.0,
+        "power_c0.75": 1.0,
+        "power_c0.9": 1.0,
+        "false_alarm": 0.02666666666666667
+      }
+    }
+  ]
+}
