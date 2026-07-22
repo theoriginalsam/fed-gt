@@ -1,0 +1,17 @@
+{
+  "ic": {
+    "is_ic": true,
+    "worst_c": 0.05,
+    "net_advantage": -0.8958333333333333
+  },
+  "p_min": 0.10536971830985915,
+  "brd_final_honest_frac": 1.0,
+  "sim": {
+    "n_rounds": 60,
+    "n_audits": 117,
+    "honest_flag_rate": 0.06862745098039216,
+    "cheater_flag_rate": 1.0,
+    "payoffs_honest": 58.44444444444444,
+    "payoffs_cheaters": 30.0
+  }
+}

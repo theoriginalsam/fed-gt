@@ -1,0 +1,29 @@
+{
+  "config": {
+    "shape": [
+      256,
+      256
+    ],
+    "rank": 8,
+    "sigma": 0.05
+  },
+  "results": {
+    "1": {
+      "power": 1.0,
+      "false_alarm": 0.025
+    },
+    "3": {
+      "power": 1.0,
+      "false_alarm": 0.025
+    },
+    "5": {
+      "power": 1.0,
+      "false_alarm": 0.05
+    },
+    "10": {
+      "power": 1.0,
+      "false_alarm": 0.06
+    }
+  },
+  "pass_rounds": 1
+}
