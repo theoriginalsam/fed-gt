@@ -1,0 +1,69 @@
+{
+  "config": {
+    "d": 3584,
+    "sigma": 5e-05,
+    "cheat": 0.5,
+    "pool": 4,
+    "alpha": 0.05,
+    "n_null": 60,
+    "n_test": 60
+  },
+  "rows": [
+    {
+      "rank": 4,
+      "sigma_hat": 4.998053996223128e-05,
+      "sigma_true": 5e-05,
+      "recovery_err": 0.00038920075537448163,
+      "matched": {
+        "power": 1.0,
+        "false_alarm": 0.05
+      },
+      "flat": {
+        "power": 1.0,
+        "false_alarm": 0.05
+      }
+    },
+    {
+      "rank": 8,
+      "sigma_hat": 4.998067310718123e-05,
+      "sigma_true": 5e-05,
+      "recovery_err": 0.00038653785637541064,
+      "matched": {
+        "power": 1.0,
+        "false_alarm": 0.15
+      },
+      "flat": {
+        "power": 1.0,
+        "false_alarm": 0.16666666666666666
+      }
+    },
+    {
+      "rank": 16,
+      "sigma_hat": 4.997374485469519e-05,
+      "sigma_true": 5e-05,
+      "recovery_err": 0.000525102906096187,
+      "matched": {
+        "power": 1.0,
+        "false_alarm": 0.05
+      },
+      "flat": {
+        "power": 1.0,
+        "false_alarm": 0.2833333333333333
+      }
+    },
+    {
+      "rank": 32,
+      "sigma_hat": 4.985200037885049e-05,
+      "sigma_true": 5e-05,
+      "recovery_err": 0.002959992422990219,
+      "matched": {
+        "power": 1.0,
+        "false_alarm": 0.03333333333333333
+      },
+      "flat": {
+        "power": 1.0,
+        "false_alarm": 1.0
+      }
+    }
+  ]
+}
