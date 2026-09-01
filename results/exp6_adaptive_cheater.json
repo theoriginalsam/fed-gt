@@ -1,0 +1,101 @@
+{
+  "config": {
+    "d": 3584,
+    "sigma": 5e-05,
+    "cheat": 0.5,
+    "pool": 4,
+    "alpha": 0.05,
+    "n_null": 40,
+    "n_test": 40
+  },
+  "rows": [
+    {
+      "rank": 4,
+      "threshold": 2.4971095393251533e-09,
+      "honest": {
+        "flag_rate": 0.1,
+        "sigma_hat": 4.9977106773089894e-05,
+        "signal_noise_std": 4.998262940132369e-05,
+        "trunc_distortion": 0.03912406552909198
+      },
+      "naive": {
+        "flag_rate": 1.0,
+        "sigma_hat": 2.498914735880004e-05,
+        "signal_noise_std": 2.5035713491100928e-05,
+        "trunc_distortion": 0.020738261303058406
+      },
+      "adaptive": {
+        "flag_rate": 1.0,
+        "sigma_hat": 4.995700310956992e-05,
+        "signal_noise_std": 2.4987988613336004e-05,
+        "trunc_distortion": 0.022823846010757553
+      }
+    },
+    {
+      "rank": 8,
+      "threshold": 2.496982739672404e-09,
+      "honest": {
+        "flag_rate": 0.0,
+        "sigma_hat": 4.997759806182733e-05,
+        "signal_noise_std": 5.000603024269934e-05,
+        "trunc_distortion": 0.05453355736479676
+      },
+      "naive": {
+        "flag_rate": 1.0,
+        "sigma_hat": 2.4989750937309426e-05,
+        "signal_noise_std": 2.4987904331724153e-05,
+        "trunc_distortion": 0.023730731254165208
+      },
+      "adaptive": {
+        "flag_rate": 1.0,
+        "sigma_hat": 4.995672652591252e-05,
+        "signal_noise_std": 2.4984375183388714e-05,
+        "trunc_distortion": 0.029347725441187286
+      }
+    },
+    {
+      "rank": 16,
+      "threshold": 2.4954432484315415e-09,
+      "honest": {
+        "flag_rate": 0.075,
+        "sigma_hat": 4.996738876863137e-05,
+        "signal_noise_std": 4.99918749788258e-05,
+        "trunc_distortion": 0.087916552021645
+      },
+      "naive": {
+        "flag_rate": 1.0,
+        "sigma_hat": 2.4984243152877488e-05,
+        "signal_noise_std": 2.5014486121814696e-05,
+        "trunc_distortion": 0.03706288537787108
+      },
+      "adaptive": {
+        "flag_rate": 0.925,
+        "sigma_hat": 4.99375048118076e-05,
+        "signal_noise_std": 2.5021291668622658e-05,
+        "trunc_distortion": 0.058527161140049654
+      }
+    },
+    {
+      "rank": 32,
+      "threshold": 2.480100927395014e-09,
+      "honest": {
+        "flag_rate": 0.15,
+        "sigma_hat": 4.9853857363162926e-05,
+        "signal_noise_std": 5.0013741226282295e-05,
+        "trunc_distortion": 0.13028503079404927
+      },
+      "naive": {
+        "flag_rate": 1.0,
+        "sigma_hat": 2.493036003310808e-05,
+        "signal_noise_std": 2.4996295359651558e-05,
+        "trunc_distortion": 0.06415104466526753
+      },
+      "adaptive": {
+        "flag_rate": 0.9,
+        "sigma_hat": 4.9693275031057614e-05,
+        "signal_noise_std": 2.500345545661988e-05,
+        "trunc_distortion": 0.13046237290133542
+      }
+    }
+  ]
+}
