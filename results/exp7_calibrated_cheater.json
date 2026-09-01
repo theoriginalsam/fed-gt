@@ -1,0 +1,85 @@
+{
+  "config": {
+    "d": 3584,
+    "sigma": 5e-05,
+    "cheat": 0.5,
+    "pool": 4,
+    "alpha": 0.05,
+    "n_null": 40,
+    "n_test": 40
+  },
+  "rows": [
+    {
+      "rank": 4,
+      "threshold": 2.497106847335579e-09,
+      "honest": {
+        "flag_rate": 0.1,
+        "sigma_hat": 4.997710381923395e-05,
+        "signal_noise_std": 5.006210461186055e-05
+      },
+      "uncalibrated": {
+        "flag_rate": 1.0,
+        "sigma_hat": 4.9957020599653246e-05
+      },
+      "calibrated": {
+        "flag_rate": 0.05,
+        "sigma_hat": 4.9978568618878553e-05,
+        "signal_noise_std": 2.4998701521883133e-05
+      }
+    },
+    {
+      "rank": 8,
+      "threshold": 2.497142659535853e-09,
+      "honest": {
+        "flag_rate": 0.05,
+        "sigma_hat": 4.997709321902227e-05,
+        "signal_noise_std": 4.99668636865413e-05
+      },
+      "uncalibrated": {
+        "flag_rate": 1.0,
+        "sigma_hat": 4.995672332065938e-05
+      },
+      "calibrated": {
+        "flag_rate": 0.125,
+        "sigma_hat": 4.997776679359526e-05,
+        "signal_noise_std": 2.4991543558550406e-05
+      }
+    },
+    {
+      "rank": 16,
+      "threshold": 2.4954865218372565e-09,
+      "honest": {
+        "flag_rate": 0.225,
+        "sigma_hat": 4.996603359258246e-05,
+        "signal_noise_std": 5.002869211223998e-05
+      },
+      "uncalibrated": {
+        "flag_rate": 0.875,
+        "sigma_hat": 4.993822710141509e-05
+      },
+      "calibrated": {
+        "flag_rate": 0.175,
+        "sigma_hat": 4.99663548711516e-05,
+        "signal_noise_std": 2.5007141490828788e-05
+      }
+    },
+    {
+      "rank": 32,
+      "threshold": 2.4784988830146143e-09,
+      "honest": {
+        "flag_rate": 0.025,
+        "sigma_hat": 4.9846850426815086e-05,
+        "signal_noise_std": 5.000614183311729e-05
+      },
+      "uncalibrated": {
+        "flag_rate": 0.95,
+        "sigma_hat": 4.9685346839279014e-05
+      },
+      "calibrated": {
+        "flag_rate": 0.2,
+        "sigma_hat": 4.983753653442776e-05,
+        "signal_noise_std": 2.5006796860053383e-05
+      }
+    }
+  ]
+}
