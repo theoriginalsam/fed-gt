@@ -1,0 +1,48 @@
+{
+  "stage1": [
+    {
+      "regime": "early",
+      "sep": 1,
+      "n": 60,
+      "drift_over_noise": 143.70046783399792,
+      "verdict": "DEAD"
+    },
+    {
+      "regime": "early",
+      "sep": 2,
+      "n": 60,
+      "drift_over_noise": 136.9012399383442,
+      "verdict": "DEAD"
+    },
+    {
+      "regime": "early",
+      "sep": 3,
+      "n": 60,
+      "drift_over_noise": 170.4481364670031,
+      "verdict": "DEAD"
+    },
+    {
+      "regime": "converged",
+      "sep": 1,
+      "n": 60,
+      "drift_over_noise": 65.2710653114415,
+      "verdict": "DEAD"
+    },
+    {
+      "regime": "converged",
+      "sep": 2,
+      "n": 60,
+      "drift_over_noise": 93.05144387587788,
+      "verdict": "DEAD"
+    },
+    {
+      "regime": "converged",
+      "sep": 3,
+      "n": 60,
+      "drift_over_noise": 97.86777878859382,
+      "verdict": "DEAD"
+    }
+  ],
+  "stage2": null,
+  "conclusion": "drift dominates; Route A not viable"
+}
