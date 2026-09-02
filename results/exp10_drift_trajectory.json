@@ -1,0 +1,58 @@
+{
+  "config": {
+    "sigma": 5e-05,
+    "sep": 1,
+    "windows": [
+      [
+        1,
+        5
+      ],
+      [
+        6,
+        10
+      ],
+      [
+        11,
+        15
+      ],
+      [
+        16,
+        20
+      ]
+    ]
+  },
+  "rows": [
+    {
+      "window": "1-5",
+      "midpoint": 3.0,
+      "n": 70,
+      "drift_over_noise": 410.2365639724714
+    },
+    {
+      "window": "6-10",
+      "midpoint": 8.0,
+      "n": 70,
+      "drift_over_noise": 43.10828472089677
+    },
+    {
+      "window": "11-15",
+      "midpoint": 13.0,
+      "n": 70,
+      "drift_over_noise": 70.75131182819611
+    },
+    {
+      "window": "16-20",
+      "midpoint": 18.0,
+      "n": 70,
+      "drift_over_noise": 53.41596980250287
+    }
+  ],
+  "beta_all_windows": 1.1085784845151951,
+  "r2_all_windows": 0.8177540696562287,
+  "beta_post_transient": -0.3231934290177118,
+  "r2_post_transient": 0.1828131543969811,
+  "post_transient_level": 55.75852211719859,
+  "post_transient_sd": 13.969606308841927,
+  "extrapolated_crossover_rounds": null,
+  "verdict": "FLOOR. After the initial transient the drift/noise ratio stops decaying and fluctuates about a constant level. More training does not close the gap at any length, so the temporal defense is not merely impractical but unreachable by longer runs."
+}
