@@ -1,0 +1,219 @@
+{
+  "config": {
+    "d": 3584,
+    "sigma_base": 5e-05,
+    "mults": [
+      0.25,
+      0.5,
+      1.0,
+      2.0,
+      4.0
+    ],
+    "cheat": 0.5,
+    "q": 20,
+    "alpha": 0.05,
+    "trials": 25
+  },
+  "rows": [
+    {
+      "rank": 4,
+      "sigma_mult": 0.25,
+      "visibility": 24.839965937814686,
+      "alignment": 0.9998854935463847,
+      "challenge_power": 0.96,
+      "energy_honest": 0.9998929020154356,
+      "energy_decoy": 0.999933452688418,
+      "decoy_caught": 0.0
+    },
+    {
+      "rank": 4,
+      "sigma_mult": 0.5,
+      "visibility": 13.182053318025048,
+      "alignment": 0.9995932618787282,
+      "challenge_power": 0.88,
+      "energy_honest": 0.9995786537355668,
+      "energy_decoy": 0.999740995522608,
+      "decoy_caught": 0.0
+    },
+    {
+      "rank": 4,
+      "sigma_mult": 1.0,
+      "visibility": 6.893731616201956,
+      "alignment": 0.9986481916943198,
+      "challenge_power": 0.84,
+      "energy_honest": 0.9980394757111481,
+      "energy_decoy": 0.9987377847510966,
+      "decoy_caught": 0.0
+    },
+    {
+      "rank": 4,
+      "sigma_mult": 2.0,
+      "visibility": 3.2501238911356736,
+      "alignment": 0.9927445936137593,
+      "challenge_power": 0.68,
+      "energy_honest": 0.9920028171382451,
+      "energy_decoy": 0.9948791380120181,
+      "decoy_caught": 0.0
+    },
+    {
+      "rank": 4,
+      "sigma_mult": 4.0,
+      "visibility": 1.6413559767024497,
+      "alignment": 0.9683412100298088,
+      "challenge_power": 0.88,
+      "energy_honest": 0.9720149654429241,
+      "energy_decoy": 0.9825969236025714,
+      "decoy_caught": 0.0
+    },
+    {
+      "rank": 8,
+      "sigma_mult": 0.25,
+      "visibility": 10.936713572642336,
+      "alignment": 0.9996294169680897,
+      "challenge_power": 1.0,
+      "energy_honest": 0.9997717769356637,
+      "energy_decoy": 0.9998559271453519,
+      "decoy_caught": 0.0
+    },
+    {
+      "rank": 8,
+      "sigma_mult": 0.5,
+      "visibility": 5.755197582626936,
+      "alignment": 0.9985834978307316,
+      "challenge_power": 0.92,
+      "energy_honest": 0.9990738617543257,
+      "energy_decoy": 0.9994105179531568,
+      "decoy_caught": 0.0
+    },
+    {
+      "rank": 8,
+      "sigma_mult": 1.0,
+      "visibility": 2.837983406721262,
+      "alignment": 0.994435578561125,
+      "challenge_power": 1.0,
+      "energy_honest": 0.9969622785923405,
+      "energy_decoy": 0.9981027062763854,
+      "decoy_caught": 0.0
+    },
+    {
+      "rank": 8,
+      "sigma_mult": 2.0,
+      "visibility": 1.4459591236057505,
+      "alignment": 0.9776548667109707,
+      "challenge_power": 1.0,
+      "energy_honest": 0.9851218307354646,
+      "energy_decoy": 0.990497899322356,
+      "decoy_caught": 0.0
+    },
+    {
+      "rank": 8,
+      "sigma_mult": 4.0,
+      "visibility": 0.7204409113345289,
+      "alignment": 0.8432101678548488,
+      "challenge_power": 1.0,
+      "energy_honest": 0.9480572325384992,
+      "energy_decoy": 0.9658719991083906,
+      "decoy_caught": 0.0
+    },
+    {
+      "rank": 16,
+      "sigma_mult": 0.25,
+      "visibility": 4.871544221770773,
+      "alignment": 0.9544103556196073,
+      "challenge_power": 0.96,
+      "energy_honest": 0.999633201396568,
+      "energy_decoy": 0.999771342041324,
+      "decoy_caught": 0.0
+    },
+    {
+      "rank": 16,
+      "sigma_mult": 0.5,
+      "visibility": 2.518281232148343,
+      "alignment": 0.9509039198684784,
+      "challenge_power": 1.0,
+      "energy_honest": 0.9986557920273748,
+      "energy_decoy": 0.9991688642886102,
+      "decoy_caught": 0.04
+    },
+    {
+      "rank": 16,
+      "sigma_mult": 1.0,
+      "visibility": 1.0401530453414614,
+      "alignment": 0.8921915357054664,
+      "challenge_power": 1.0,
+      "energy_honest": 0.9948904451673332,
+      "energy_decoy": 0.9968815537227376,
+      "decoy_caught": 0.04
+    },
+    {
+      "rank": 16,
+      "sigma_mult": 2.0,
+      "visibility": 0.6453928951702003,
+      "alignment": 0.7627014824404903,
+      "challenge_power": 1.0,
+      "energy_honest": 0.9767357984497074,
+      "energy_decoy": 0.9854969307806013,
+      "decoy_caught": 0.0
+    },
+    {
+      "rank": 16,
+      "sigma_mult": 4.0,
+      "visibility": 0.2560752137981131,
+      "alignment": 0.5515177141680034,
+      "challenge_power": 1.0,
+      "energy_honest": 0.9000586867550789,
+      "energy_decoy": 0.9365050372450808,
+      "decoy_caught": 0.0
+    },
+    {
+      "rank": 32,
+      "sigma_mult": 0.25,
+      "visibility": 0.32864917082459977,
+      "alignment": 0.6334710672947967,
+      "challenge_power": 1.0,
+      "energy_honest": 0.9989121689569589,
+      "energy_decoy": 0.9993050008141116,
+      "decoy_caught": 0.0
+    },
+    {
+      "rank": 32,
+      "sigma_mult": 0.5,
+      "visibility": 0.1628511584047963,
+      "alignment": 0.6381872436405277,
+      "challenge_power": 1.0,
+      "energy_honest": 0.9957336744882385,
+      "energy_decoy": 0.997315403386127,
+      "decoy_caught": 0.0
+    },
+    {
+      "rank": 32,
+      "sigma_mult": 1.0,
+      "visibility": 0.09389213789576539,
+      "alignment": 0.5500135505019819,
+      "challenge_power": 1.0,
+      "energy_honest": 0.9853002096905895,
+      "energy_decoy": 0.9909055409588167,
+      "decoy_caught": 0.0
+    },
+    {
+      "rank": 32,
+      "sigma_mult": 2.0,
+      "visibility": 0.08049067203509246,
+      "alignment": 0.4434189884797331,
+      "challenge_power": 1.0,
+      "energy_honest": 0.9262415960879696,
+      "energy_decoy": 0.9514829048456115,
+      "decoy_caught": 0.0
+    },
+    {
+      "rank": 32,
+      "sigma_mult": 4.0,
+      "visibility": 0.04645689992607915,
+      "alignment": 0.31853945306967885,
+      "challenge_power": 1.0,
+      "energy_honest": 0.7724587977505075,
+      "energy_decoy": 0.8402217162390722,
+      "decoy_caught": 0.0
+    }
+  ]
+}
