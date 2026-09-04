@@ -1,0 +1,156 @@
+{
+  "config": {
+    "d": 3584,
+    "sigma": 5e-05,
+    "cheat": 0.5,
+    "q": 20,
+    "alpha": 0.05,
+    "trials": 40
+  },
+  "rows": [
+    {
+      "rank": 8,
+      "thr_energy": 0.9950765873345006,
+      "k": {
+        "0": {
+          "energy_ratio": 0.9971862769364044,
+          "privacy": 4.985543038457708e-05,
+          "pct_of_contract": 99.71086076915415,
+          "distortion": 0.05195386280066007,
+          "combined_flag": 0.1
+        },
+        "1": {
+          "energy_ratio": 0.9982784187892015,
+          "privacy": 4.7769854642842535e-05,
+          "pct_of_contract": 95.53970928568506,
+          "distortion": 0.8196229513049647,
+          "combined_flag": 0.025
+        },
+        "2": {
+          "energy_ratio": 0.9983556566392402,
+          "privacy": 4.4690876695341696e-05,
+          "pct_of_contract": 89.38175339068339,
+          "distortion": 0.9156863830489206,
+          "combined_flag": 0.025
+        },
+        "4": {
+          "energy_ratio": 0.9982671168570381,
+          "privacy": 3.867768432388472e-05,
+          "pct_of_contract": 77.35536864776944,
+          "distortion": 1.001650202099597,
+          "combined_flag": 0.075
+        },
+        "6": {
+          "energy_ratio": 0.9520655331289894,
+          "privacy": 3.307931305352107e-05,
+          "pct_of_contract": 66.15862610704212,
+          "distortion": 1.0015557211000945,
+          "combined_flag": 1.0
+        },
+        "7": {
+          "energy_ratio": 0.86691363635822,
+          "privacy": 2.8818095942694504e-05,
+          "pct_of_contract": 57.636191885389,
+          "distortion": 1.0015306306771135,
+          "combined_flag": 1.0
+        }
+      }
+    },
+    {
+      "rank": 16,
+      "thr_energy": 0.9869661382934882,
+      "k": {
+        "0": {
+          "energy_ratio": 0.9944302159679463,
+          "privacy": 5.0093640823167395e-05,
+          "pct_of_contract": 100.18728164633478,
+          "distortion": 0.07570480461735918,
+          "combined_flag": 0.1
+        },
+        "1": {
+          "energy_ratio": 0.9967094274903096,
+          "privacy": 4.905088827473544e-05,
+          "pct_of_contract": 98.10177654947087,
+          "distortion": 0.791827959046137,
+          "combined_flag": 0.025
+        },
+        "4": {
+          "energy_ratio": 0.9970531170143409,
+          "privacy": 4.473563309877999e-05,
+          "pct_of_contract": 89.47126619755997,
+          "distortion": 0.9658012715318094,
+          "combined_flag": 0.025
+        },
+        "8": {
+          "energy_ratio": 0.9965913836268399,
+          "privacy": 3.984127902759587e-05,
+          "pct_of_contract": 79.68255805519173,
+          "distortion": 1.003359745358961,
+          "combined_flag": 0.05
+        },
+        "12": {
+          "energy_ratio": 0.9778236014427634,
+          "privacy": 3.306016403893735e-05,
+          "pct_of_contract": 66.1203280778747,
+          "distortion": 1.002584314532888,
+          "combined_flag": 0.875
+        },
+        "15": {
+          "energy_ratio": 0.8278775122769986,
+          "privacy": 2.7537290004554887e-05,
+          "pct_of_contract": 55.07458000910977,
+          "distortion": 1.002979276313075,
+          "combined_flag": 1.0
+        }
+      }
+    },
+    {
+      "rank": 32,
+      "thr_energy": 0.9689503462661627,
+      "k": {
+        "0": {
+          "energy_ratio": 0.9830636308703866,
+          "privacy": 5.007774694499187e-05,
+          "pct_of_contract": 100.15549388998373,
+          "distortion": 0.14130860347999538,
+          "combined_flag": 0.1
+        },
+        "1": {
+          "energy_ratio": 0.9898953495581205,
+          "privacy": 4.95394855706323e-05,
+          "pct_of_contract": 99.0789711412646,
+          "distortion": 0.8101642451344416,
+          "combined_flag": 0.0
+        },
+        "8": {
+          "energy_ratio": 0.9934067688117348,
+          "privacy": 4.48671439553451e-05,
+          "pct_of_contract": 89.7342879106902,
+          "distortion": 0.9959400613860685,
+          "combined_flag": 0.1
+        },
+        "16": {
+          "energy_ratio": 0.994157461275148,
+          "privacy": 3.9339617679233876e-05,
+          "pct_of_contract": 78.67923535846775,
+          "distortion": 1.0064030521681253,
+          "combined_flag": 0.1
+        },
+        "24": {
+          "energy_ratio": 0.9886798565682493,
+          "privacy": 3.3122703585559964e-05,
+          "pct_of_contract": 66.24540717111992,
+          "distortion": 1.0065772614948576,
+          "combined_flag": 0.15
+        },
+        "31": {
+          "energy_ratio": 0.8222595337525143,
+          "privacy": 2.6101263671436592e-05,
+          "pct_of_contract": 52.20252734287318,
+          "distortion": 1.006327611185322,
+          "combined_flag": 1.0
+        }
+      }
+    }
+  ]
+}
