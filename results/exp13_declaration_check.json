@@ -1,0 +1,208 @@
+{
+  "config": {
+    "d": 3584,
+    "sigma": 5e-05,
+    "cheat": 0.5,
+    "q": 20,
+    "alpha": 0.05,
+    "trials": 40
+  },
+  "rows": [
+    {
+      "rank": 4,
+      "thr_energy": 0.9964160816602524,
+      "thr_challenge": 7.1150571420800475,
+      "adversaries": {
+        "honest": {
+          "energy_ratio": 0.9981922714959154,
+          "privacy": 4.993014777300122e-05,
+          "energy_flag": 0.05,
+          "challenge_flag": 0.05,
+          "combined_flag": 0.1
+        },
+        "shaped": {
+          "energy_ratio": 0.9982621242053842,
+          "privacy": 2.538978935035127e-05,
+          "energy_flag": 0.075,
+          "challenge_flag": 0.725,
+          "combined_flag": 0.725
+        },
+        "random_decl": {
+          "energy_ratio": 1.1638686975382975e-06,
+          "privacy": 2.4959105455177766e-05,
+          "energy_flag": 1.0,
+          "challenge_flag": 0.05,
+          "combined_flag": 1.0
+        },
+        "tilt_15": {
+          "energy_ratio": 0.8688962022587692,
+          "privacy": 2.4309491361973903e-05,
+          "energy_flag": 1.0,
+          "challenge_flag": 0.675,
+          "combined_flag": 1.0
+        },
+        "tilt_40": {
+          "energy_ratio": 0.3437894662513167,
+          "privacy": 2.4511603827568397e-05,
+          "energy_flag": 1.0,
+          "challenge_flag": 0.025,
+          "combined_flag": 1.0
+        },
+        "decoy": {
+          "energy_ratio": 0.9990193801850704,
+          "privacy": 4.3582252310480164e-05,
+          "energy_flag": 0.0,
+          "challenge_flag": 0.0,
+          "combined_flag": 0.0
+        }
+      }
+    },
+    {
+      "rank": 8,
+      "thr_energy": 0.993340419874895,
+      "thr_challenge": 11.11676279133745,
+      "adversaries": {
+        "honest": {
+          "energy_ratio": 0.9962918403499238,
+          "privacy": 5.057465536815484e-05,
+          "energy_flag": 0.05,
+          "challenge_flag": 0.05,
+          "combined_flag": 0.075
+        },
+        "shaped": {
+          "energy_ratio": 0.9963688669416347,
+          "privacy": 2.4626678332100245e-05,
+          "energy_flag": 0.0,
+          "challenge_flag": 1.0,
+          "combined_flag": 1.0
+        },
+        "random_decl": {
+          "energy_ratio": 3.5740379172921148e-06,
+          "privacy": 2.4698114921497604e-05,
+          "energy_flag": 1.0,
+          "challenge_flag": 0.1,
+          "combined_flag": 1.0
+        },
+        "tilt_15": {
+          "energy_ratio": 0.8676832300949465,
+          "privacy": 2.5291845947825616e-05,
+          "energy_flag": 1.0,
+          "challenge_flag": 0.95,
+          "combined_flag": 1.0
+        },
+        "tilt_40": {
+          "energy_ratio": 0.34317123645037884,
+          "privacy": 2.5206143846640276e-05,
+          "energy_flag": 1.0,
+          "challenge_flag": 0.2,
+          "combined_flag": 1.0
+        },
+        "decoy": {
+          "energy_ratio": 0.9975089542297212,
+          "privacy": 4.8064398882897835e-05,
+          "energy_flag": 0.0,
+          "challenge_flag": 0.025,
+          "combined_flag": 0.025
+        }
+      }
+    },
+    {
+      "rank": 16,
+      "thr_energy": 0.9873387860796101,
+      "thr_challenge": 12.846768717470997,
+      "adversaries": {
+        "honest": {
+          "energy_ratio": 0.994187947443178,
+          "privacy": 4.9600495628254664e-05,
+          "energy_flag": 0.05,
+          "challenge_flag": 0.05,
+          "combined_flag": 0.1
+        },
+        "shaped": {
+          "energy_ratio": 0.992786661237146,
+          "privacy": 2.489334199811537e-05,
+          "energy_flag": 0.075,
+          "challenge_flag": 1.0,
+          "combined_flag": 1.0
+        },
+        "random_decl": {
+          "energy_ratio": 1.5077994265096719e-05,
+          "privacy": 2.512561964487218e-05,
+          "energy_flag": 1.0,
+          "challenge_flag": 0.05,
+          "combined_flag": 1.0
+        },
+        "tilt_15": {
+          "energy_ratio": 0.8648090846581704,
+          "privacy": 2.477852977433808e-05,
+          "energy_flag": 1.0,
+          "challenge_flag": 1.0,
+          "combined_flag": 1.0
+        },
+        "tilt_40": {
+          "energy_ratio": 0.3420272803359382,
+          "privacy": 2.4963187580065926e-05,
+          "energy_flag": 1.0,
+          "challenge_flag": 0.325,
+          "combined_flag": 1.0
+        },
+        "decoy": {
+          "energy_ratio": 0.9961646525649039,
+          "privacy": 4.795676623123509e-05,
+          "energy_flag": 0.0,
+          "challenge_flag": 0.175,
+          "combined_flag": 0.175
+        }
+      }
+    },
+    {
+      "rank": 32,
+      "thr_energy": 0.9765162993119665,
+      "thr_challenge": 12.90029132659835,
+      "adversaries": {
+        "honest": {
+          "energy_ratio": 0.9858081255188704,
+          "privacy": 5.0138610725869494e-05,
+          "energy_flag": 0.05,
+          "challenge_flag": 0.05,
+          "combined_flag": 0.1
+        },
+        "shaped": {
+          "energy_ratio": 0.9861570290316696,
+          "privacy": 2.495966548865684e-05,
+          "energy_flag": 0.075,
+          "challenge_flag": 1.0,
+          "combined_flag": 1.0
+        },
+        "random_decl": {
+          "energy_ratio": 5.56543976116387e-05,
+          "privacy": 2.5008932239373057e-05,
+          "energy_flag": 1.0,
+          "challenge_flag": 0.175,
+          "combined_flag": 1.0
+        },
+        "tilt_15": {
+          "energy_ratio": 0.8583093371933492,
+          "privacy": 2.5018152972318518e-05,
+          "energy_flag": 1.0,
+          "challenge_flag": 1.0,
+          "combined_flag": 1.0
+        },
+        "tilt_40": {
+          "energy_ratio": 0.3392645762131416,
+          "privacy": 2.5005215995404144e-05,
+          "energy_flag": 1.0,
+          "challenge_flag": 0.425,
+          "combined_flag": 1.0
+        },
+        "decoy": {
+          "energy_ratio": 0.9909906331606788,
+          "privacy": 4.915976142236176e-05,
+          "energy_flag": 0.025,
+          "challenge_flag": 0.15,
+          "combined_flag": 0.175
+        }
+      }
+    }
+  ]
+}
