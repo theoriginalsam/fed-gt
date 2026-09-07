@@ -5,80 +5,80 @@
     "cheat": 0.5,
     "pool": 4,
     "alpha": 0.05,
-    "n_null": 40,
-    "n_test": 40
+    "n_null": 150,
+    "n_test": 150
   },
   "rows": [
     {
       "rank": 4,
-      "threshold": 2.497106847335579e-09,
+      "threshold": 2.4969658562733905e-09,
       "honest": {
-        "flag_rate": 0.1,
-        "sigma_hat": 4.997710381923395e-05,
-        "signal_noise_std": 5.006210461186055e-05
+        "flag_rate": 0.04,
+        "sigma_hat": 4.9978067678985254e-05,
+        "signal_noise_std": 4.999821775722816e-05
       },
       "uncalibrated": {
         "flag_rate": 1.0,
-        "sigma_hat": 4.9957020599653246e-05
+        "sigma_hat": 4.995703385307376e-05
       },
       "calibrated": {
-        "flag_rate": 0.05,
-        "sigma_hat": 4.9978568618878553e-05,
-        "signal_noise_std": 2.4998701521883133e-05
+        "flag_rate": 0.02666666666666667,
+        "sigma_hat": 4.9977337444587145e-05,
+        "signal_noise_std": 2.4983643103804555e-05
       }
     },
     {
       "rank": 8,
-      "threshold": 2.497142659535853e-09,
+      "threshold": 2.4969707020185384e-09,
       "honest": {
-        "flag_rate": 0.05,
-        "sigma_hat": 4.997709321902227e-05,
-        "signal_noise_std": 4.99668636865413e-05
+        "flag_rate": 0.1,
+        "sigma_hat": 4.997632958487326e-05,
+        "signal_noise_std": 4.9963396573679856e-05
       },
       "uncalibrated": {
         "flag_rate": 1.0,
-        "sigma_hat": 4.995672332065938e-05
+        "sigma_hat": 4.99566880176779e-05
       },
       "calibrated": {
-        "flag_rate": 0.125,
-        "sigma_hat": 4.997776679359526e-05,
-        "signal_noise_std": 2.4991543558550406e-05
+        "flag_rate": 0.09333333333333334,
+        "sigma_hat": 4.997736461280599e-05,
+        "signal_noise_std": 2.5006454117720757e-05
       }
     },
     {
       "rank": 16,
-      "threshold": 2.4954865218372565e-09,
+      "threshold": 2.4910049765843322e-09,
       "honest": {
-        "flag_rate": 0.225,
-        "sigma_hat": 4.996603359258246e-05,
-        "signal_noise_std": 5.002869211223998e-05
+        "flag_rate": 0.04666666666666667,
+        "sigma_hat": 4.993725313752921e-05,
+        "signal_noise_std": 4.9909164097980646e-05
       },
       "uncalibrated": {
-        "flag_rate": 0.875,
-        "sigma_hat": 4.993822710141509e-05
+        "flag_rate": 0.9,
+        "sigma_hat": 4.987217193766536e-05
       },
       "calibrated": {
-        "flag_rate": 0.175,
-        "sigma_hat": 4.99663548711516e-05,
-        "signal_noise_std": 2.5007141490828788e-05
+        "flag_rate": 0.04,
+        "sigma_hat": 4.993641041147974e-05,
+        "signal_noise_std": 2.501877226450323e-05
       }
     },
     {
       "rank": 32,
-      "threshold": 2.4784988830146143e-09,
+      "threshold": 2.4729910965017524e-09,
       "honest": {
-        "flag_rate": 0.025,
-        "sigma_hat": 4.9846850426815086e-05,
-        "signal_noise_std": 5.000614183311729e-05
+        "flag_rate": 0.03333333333333333,
+        "sigma_hat": 4.976638686535585e-05,
+        "signal_noise_std": 5.000225181157936e-05
       },
       "uncalibrated": {
-        "flag_rate": 0.95,
-        "sigma_hat": 4.9685346839279014e-05
+        "flag_rate": 0.9933333333333333,
+        "sigma_hat": 4.9528741905041115e-05
       },
       "calibrated": {
-        "flag_rate": 0.2,
-        "sigma_hat": 4.983753653442776e-05,
-        "signal_noise_std": 2.5006796860053383e-05
+        "flag_rate": 0.16,
+        "sigma_hat": 4.975276774077099e-05,
+        "signal_noise_std": 2.500232127753979e-05
       }
     }
   ]

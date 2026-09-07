@@ -54,8 +54,8 @@ ALPHA = 0.05
 N_ITER = 4
 
 
-def load_pool(rank, n, rng):
-    files = sorted(glob.glob(f"adapters/*_r{rank}__*q_proj.pt"))
+def load_pool(rank, n, rng, adir="adapters"):
+    files = sorted(glob.glob(f"{adir}/*_r{rank}__*q_proj.pt"))
     pick = rng.choice(len(files), size=min(n, len(files)), replace=False)
     out = []
     for i in pick:
@@ -144,7 +144,11 @@ def pooled(pool, rank, mode, rng):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--ranks", type=int, nargs="+", default=RANKS)
+    ap.add_argument("--adapters", default="adapters")
+    ap.add_argument("--trials", type=int, default=None)
     args = ap.parse_args()
+    global N_NULL, N_TEST
+    if args.trials: N_NULL = N_TEST = args.trials
     rng = np.random.default_rng(0)
 
     print("=" * 88)
@@ -155,7 +159,7 @@ def main():
     out = []
     for rank in args.ranks:
         t0 = time.time()
-        pool = load_pool(rank, 60, rng)
+        pool = load_pool(rank, 60, rng, args.adapters)
         null = np.array([pooled(pool, rank, "honest", rng) for _ in range(N_NULL)])
         thr = float(np.quantile(null, ALPHA))
         row = {"rank": rank, "threshold": thr}
