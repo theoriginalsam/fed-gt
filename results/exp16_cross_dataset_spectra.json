@@ -1,0 +1,220 @@
+{
+  "rows": [
+    {
+      "dataset": "yelp",
+      "method": "hetero_spa",
+      "rank": 4,
+      "n_adapters": 1064,
+      "gamma_mean": 1.0187716332571937,
+      "gamma_sd_over_seeds": 0.0075114619619920595,
+      "decay_depth": 0.2604461943814584
+    },
+    {
+      "dataset": "yelp",
+      "method": "hetero_spa",
+      "rank": 8,
+      "n_adapters": 812,
+      "gamma_mean": 1.2911682352158775,
+      "gamma_sd_over_seeds": 0.03217123863631255,
+      "decay_depth": 0.08096713271435584
+    },
+    {
+      "dataset": "yelp",
+      "method": "hetero_spa",
+      "rank": 16,
+      "n_adapters": 336,
+      "gamma_mean": 1.3583982924685127,
+      "gamma_sd_over_seeds": 0.10560283993539886,
+      "decay_depth": 0.04009374702343913
+    },
+    {
+      "dataset": "yelp",
+      "method": "hetero_spa",
+      "rank": 32,
+      "n_adapters": 308,
+      "gamma_mean": 1.5581417570216924,
+      "gamma_sd_over_seeds": 0.09273333359425026,
+      "decay_depth": 0.028469374746509225
+    },
+    {
+      "dataset": "yelp",
+      "method": "flexlora",
+      "rank": 4,
+      "n_adapters": 1064,
+      "gamma_mean": 1.0144349571534963,
+      "gamma_sd_over_seeds": 0.005281671430354661,
+      "decay_depth": 0.2620545597041895
+    },
+    {
+      "dataset": "yelp",
+      "method": "flexlora",
+      "rank": 8,
+      "n_adapters": 812,
+      "gamma_mean": 1.2721339193920895,
+      "gamma_sd_over_seeds": 0.02052141036621883,
+      "decay_depth": 0.08291705411870555
+    },
+    {
+      "dataset": "yelp",
+      "method": "flexlora",
+      "rank": 16,
+      "n_adapters": 336,
+      "gamma_mean": 1.338947305537092,
+      "gamma_sd_over_seeds": 0.147686004083677,
+      "decay_depth": 0.034655120499013
+    },
+    {
+      "dataset": "yelp",
+      "method": "flexlora",
+      "rank": 32,
+      "n_adapters": 308,
+      "gamma_mean": 1.4871410764456379,
+      "gamma_sd_over_seeds": 0.11003287918699486,
+      "decay_depth": 0.009341101550966261
+    },
+    {
+      "dataset": "alpaca",
+      "method": "hetero_spa",
+      "rank": 4,
+      "n_adapters": 1064,
+      "gamma_mean": 1.03034552293749,
+      "gamma_sd_over_seeds": 0.012122492204170048,
+      "decay_depth": 0.25610631832323105
+    },
+    {
+      "dataset": "alpaca",
+      "method": "hetero_spa",
+      "rank": 8,
+      "n_adapters": 812,
+      "gamma_mean": 1.23830864633794,
+      "gamma_sd_over_seeds": 0.023210110091577914,
+      "decay_depth": 0.08668763312941148
+    },
+    {
+      "dataset": "alpaca",
+      "method": "hetero_spa",
+      "rank": 16,
+      "n_adapters": 336,
+      "gamma_mean": 1.2952188976767671,
+      "gamma_sd_over_seeds": 0.10692748047452948,
+      "decay_depth": 0.038729887185426914
+    },
+    {
+      "dataset": "alpaca",
+      "method": "hetero_spa",
+      "rank": 32,
+      "n_adapters": 308,
+      "gamma_mean": 1.4662382754821393,
+      "gamma_sd_over_seeds": 0.10736910313799304,
+      "decay_depth": 0.026495541592529228
+    },
+    {
+      "dataset": "alpaca",
+      "method": "flexlora",
+      "rank": 4,
+      "n_adapters": 1064,
+      "gamma_mean": 1.027794146300791,
+      "gamma_sd_over_seeds": 0.012247583038825536,
+      "decay_depth": 0.2571636957388043
+    },
+    {
+      "dataset": "alpaca",
+      "method": "flexlora",
+      "rank": 8,
+      "n_adapters": 812,
+      "gamma_mean": 1.2231838604239014,
+      "gamma_sd_over_seeds": 0.019800153152725514,
+      "decay_depth": 0.08885402779871104
+    },
+    {
+      "dataset": "alpaca",
+      "method": "flexlora",
+      "rank": 16,
+      "n_adapters": 336,
+      "gamma_mean": 1.2554857142828875,
+      "gamma_sd_over_seeds": 0.09918076168370481,
+      "decay_depth": 0.03884931841020561
+    },
+    {
+      "dataset": "alpaca",
+      "method": "flexlora",
+      "rank": 32,
+      "n_adapters": 308,
+      "gamma_mean": 1.4011422743248387,
+      "gamma_sd_over_seeds": 0.11095975067729885,
+      "decay_depth": 0.011506713768211954
+    },
+    {
+      "dataset": "gsm8k",
+      "method": "hetero_spa",
+      "rank": 4,
+      "n_adapters": 1064,
+      "gamma_mean": 0.8810159187125768,
+      "gamma_sd_over_seeds": 0.0234581421873684,
+      "decay_depth": 0.3155523924324948
+    },
+    {
+      "dataset": "gsm8k",
+      "method": "hetero_spa",
+      "rank": 8,
+      "n_adapters": 812,
+      "gamma_mean": 1.0230863476668148,
+      "gamma_sd_over_seeds": 0.04131658713304745,
+      "decay_depth": 0.12520902043387408
+    },
+    {
+      "dataset": "gsm8k",
+      "method": "hetero_spa",
+      "rank": 16,
+      "n_adapters": 336,
+      "gamma_mean": 1.111974901270114,
+      "gamma_sd_over_seeds": 0.09142502856423824,
+      "decay_depth": 0.05468568101453517
+    },
+    {
+      "dataset": "gsm8k",
+      "method": "hetero_spa",
+      "rank": 32,
+      "n_adapters": 308,
+      "gamma_mean": 1.2958343400835302,
+      "gamma_sd_over_seeds": 0.09662497227047198,
+      "decay_depth": 0.027528042521233545
+    },
+    {
+      "dataset": "gsm8k",
+      "method": "flexlora",
+      "rank": 4,
+      "n_adapters": 1064,
+      "gamma_mean": 0.8824944373991079,
+      "gamma_sd_over_seeds": 0.02259415729256152,
+      "decay_depth": 0.3147766396899778
+    },
+    {
+      "dataset": "gsm8k",
+      "method": "flexlora",
+      "rank": 8,
+      "n_adapters": 812,
+      "gamma_mean": 1.0206519081975125,
+      "gamma_sd_over_seeds": 0.0422132982823239,
+      "decay_depth": 0.12561761676047278
+    },
+    {
+      "dataset": "gsm8k",
+      "method": "flexlora",
+      "rank": 16,
+      "n_adapters": 336,
+      "gamma_mean": 1.0985390202028562,
+      "gamma_sd_over_seeds": 0.0904493091175104,
+      "decay_depth": 0.05559809448059474
+    },
+    {
+      "dataset": "gsm8k",
+      "method": "flexlora",
+      "rank": 32,
+      "n_adapters": 308,
+      "gamma_mean": 1.3263369418598396,
+      "gamma_sd_over_seeds": 0.13524320887394398,
+      "decay_depth": 0.015283546102902022
+    }
+  ]
+}
