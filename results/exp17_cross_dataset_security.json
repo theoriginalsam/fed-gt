@@ -1,0 +1,251 @@
+{
+  "config": {
+    "sigma": 5e-05,
+    "cheat": 0.5,
+    "q": 20,
+    "alpha": 0.05,
+    "trials": 40
+  },
+  "rows": [
+    {
+      "dataset": "yelp",
+      "method": "hetero_spa",
+      "rank": 4,
+      "adapters_available": 1064,
+      "attack_flag": 0.0,
+      "honest_flag": 0.05,
+      "defence_power": 0.95,
+      "decoy_combined_flag": 0.075
+    },
+    {
+      "dataset": "yelp",
+      "method": "hetero_spa",
+      "rank": 8,
+      "adapters_available": 812,
+      "attack_flag": 0.0,
+      "honest_flag": 0.05,
+      "defence_power": 1.0,
+      "decoy_combined_flag": 0.25
+    },
+    {
+      "dataset": "yelp",
+      "method": "hetero_spa",
+      "rank": 16,
+      "adapters_available": 336,
+      "attack_flag": 0.05,
+      "honest_flag": 0.05,
+      "defence_power": 1.0,
+      "decoy_combined_flag": 0.025
+    },
+    {
+      "dataset": "yelp",
+      "method": "hetero_spa",
+      "rank": 32,
+      "adapters_available": 308,
+      "attack_flag": 0.075,
+      "honest_flag": 0.05,
+      "defence_power": 1.0,
+      "decoy_combined_flag": 0.1
+    },
+    {
+      "dataset": "yelp",
+      "method": "flexlora",
+      "rank": 4,
+      "adapters_available": 1064,
+      "attack_flag": 0.0,
+      "honest_flag": 0.05,
+      "defence_power": 0.975,
+      "decoy_combined_flag": 0.175
+    },
+    {
+      "dataset": "yelp",
+      "method": "flexlora",
+      "rank": 8,
+      "adapters_available": 812,
+      "attack_flag": 0.025,
+      "honest_flag": 0.05,
+      "defence_power": 1.0,
+      "decoy_combined_flag": 0.0
+    },
+    {
+      "dataset": "yelp",
+      "method": "flexlora",
+      "rank": 16,
+      "adapters_available": 336,
+      "attack_flag": 0.025,
+      "honest_flag": 0.05,
+      "defence_power": 0.925,
+      "decoy_combined_flag": 0.025
+    },
+    {
+      "dataset": "yelp",
+      "method": "flexlora",
+      "rank": 32,
+      "adapters_available": 308,
+      "attack_flag": 0.025,
+      "honest_flag": 0.05,
+      "defence_power": 1.0,
+      "decoy_combined_flag": 0.2
+    },
+    {
+      "dataset": "alpaca",
+      "method": "hetero_spa",
+      "rank": 4,
+      "adapters_available": 1064,
+      "attack_flag": 0.0,
+      "honest_flag": 0.05,
+      "defence_power": 0.95,
+      "decoy_combined_flag": 0.075
+    },
+    {
+      "dataset": "alpaca",
+      "method": "hetero_spa",
+      "rank": 8,
+      "adapters_available": 812,
+      "attack_flag": 0.025,
+      "honest_flag": 0.05,
+      "defence_power": 1.0,
+      "decoy_combined_flag": 0.15
+    },
+    {
+      "dataset": "alpaca",
+      "method": "hetero_spa",
+      "rank": 16,
+      "adapters_available": 336,
+      "attack_flag": 0.025,
+      "honest_flag": 0.05,
+      "defence_power": 1.0,
+      "decoy_combined_flag": 0.125
+    },
+    {
+      "dataset": "alpaca",
+      "method": "hetero_spa",
+      "rank": 32,
+      "adapters_available": 308,
+      "attack_flag": 0.05,
+      "honest_flag": 0.05,
+      "defence_power": 1.0,
+      "decoy_combined_flag": 0.1
+    },
+    {
+      "dataset": "alpaca",
+      "method": "flexlora",
+      "rank": 4,
+      "adapters_available": 1064,
+      "attack_flag": 0.0,
+      "honest_flag": 0.05,
+      "defence_power": 0.9,
+      "decoy_combined_flag": 0.1
+    },
+    {
+      "dataset": "alpaca",
+      "method": "flexlora",
+      "rank": 8,
+      "adapters_available": 812,
+      "attack_flag": 0.0,
+      "honest_flag": 0.05,
+      "defence_power": 0.975,
+      "decoy_combined_flag": 0.05
+    },
+    {
+      "dataset": "alpaca",
+      "method": "flexlora",
+      "rank": 16,
+      "adapters_available": 336,
+      "attack_flag": 0.0,
+      "honest_flag": 0.05,
+      "defence_power": 1.0,
+      "decoy_combined_flag": 0.025
+    },
+    {
+      "dataset": "alpaca",
+      "method": "flexlora",
+      "rank": 32,
+      "adapters_available": 308,
+      "attack_flag": 0.025,
+      "honest_flag": 0.05,
+      "defence_power": 1.0,
+      "decoy_combined_flag": 0.125
+    },
+    {
+      "dataset": "gsm8k",
+      "method": "hetero_spa",
+      "rank": 4,
+      "adapters_available": 1064,
+      "attack_flag": 0.05,
+      "honest_flag": 0.05,
+      "defence_power": 0.9,
+      "decoy_combined_flag": 0.025
+    },
+    {
+      "dataset": "gsm8k",
+      "method": "hetero_spa",
+      "rank": 8,
+      "adapters_available": 812,
+      "attack_flag": 0.0,
+      "honest_flag": 0.05,
+      "defence_power": 1.0,
+      "decoy_combined_flag": 0.125
+    },
+    {
+      "dataset": "gsm8k",
+      "method": "hetero_spa",
+      "rank": 16,
+      "adapters_available": 336,
+      "attack_flag": 0.025,
+      "honest_flag": 0.05,
+      "defence_power": 1.0,
+      "decoy_combined_flag": 0.025
+    },
+    {
+      "dataset": "gsm8k",
+      "method": "hetero_spa",
+      "rank": 32,
+      "adapters_available": 308,
+      "attack_flag": 0.05,
+      "honest_flag": 0.05,
+      "defence_power": 1.0,
+      "decoy_combined_flag": 0.05
+    },
+    {
+      "dataset": "gsm8k",
+      "method": "flexlora",
+      "rank": 4,
+      "adapters_available": 1064,
+      "attack_flag": 0.0,
+      "honest_flag": 0.05,
+      "defence_power": 0.925,
+      "decoy_combined_flag": 0.025
+    },
+    {
+      "dataset": "gsm8k",
+      "method": "flexlora",
+      "rank": 8,
+      "adapters_available": 812,
+      "attack_flag": 0.0,
+      "honest_flag": 0.05,
+      "defence_power": 1.0,
+      "decoy_combined_flag": 0.3
+    },
+    {
+      "dataset": "gsm8k",
+      "method": "flexlora",
+      "rank": 16,
+      "adapters_available": 336,
+      "attack_flag": 0.025,
+      "honest_flag": 0.05,
+      "defence_power": 1.0,
+      "decoy_combined_flag": 0.0
+    },
+    {
+      "dataset": "gsm8k",
+      "method": "flexlora",
+      "rank": 32,
+      "adapters_available": 308,
+      "attack_flag": 0.0,
+      "honest_flag": 0.05,
+      "defence_power": 1.0,
+      "decoy_combined_flag": 0.025
+    }
+  ]
+}
