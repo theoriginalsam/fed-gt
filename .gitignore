@@ -15,3 +15,11 @@ experiments/Tar/
 adapters_r20/
 campaign/
 adapters/NewRun/
+~$*.pptx
+*.pptx.bak
+paper/*.aux
+paper/*.log
+paper/*.out
+# unpublished paper drafts and slide decks stay out of this public repo
+paper/
+*.pptx
