@@ -1,0 +1,450 @@
+{
+ "config": {
+  "delta": 1e-05,
+  "q": 20,
+  "pass": 0.9,
+  "k": 4.844805262605389
+ },
+ "rows": [
+  {
+   "rank": 4,
+   "epsilon": 0.5,
+   "a": 38.75844210084311,
+   "c_min_sim": 0.87,
+   "c_min_formula": 0.9738574529912108,
+   "withheld_sim": 0.13,
+   "withheld_formula": 0.026142547008789152,
+   "energy_withheld_sim": 0.24309999999999998
+  },
+  {
+   "rank": 4,
+   "epsilon": 1,
+   "a": 19.379221050421556,
+   "c_min_sim": 0.84,
+   "c_min_formula": 0.9469934939021792,
+   "withheld_sim": 0.16000000000000003,
+   "withheld_formula": 0.05300650609782076,
+   "energy_withheld_sim": 0.2944000000000001
+  },
+  {
+   "rank": 4,
+   "epsilon": 2,
+   "a": 9.689610525210778,
+   "c_min_sim": 0.77,
+   "c_min_formula": 0.8908385684208522,
+   "withheld_sim": 0.22999999999999998,
+   "withheld_formula": 0.10916143157914782,
+   "energy_withheld_sim": 0.4071
+  },
+  {
+   "rank": 4,
+   "epsilon": 4,
+   "a": 4.844805262605389,
+   "c_min_sim": 0.62,
+   "c_min_formula": 0.7662810907051191,
+   "withheld_sim": 0.38,
+   "withheld_formula": 0.23371890929488093,
+   "energy_withheld_sim": 0.6155999999999999
+  },
+  {
+   "rank": 4,
+   "epsilon": 8,
+   "a": 2.4224026313026945,
+   "c_min_sim": 0.0,
+   "c_min_formula": 0.41758043529894184,
+   "withheld_sim": 1.0,
+   "withheld_formula": 0.5824195647010582,
+   "energy_withheld_sim": 1.0
+  },
+  {
+   "rank": 4,
+   "epsilon": 16,
+   "a": 1.2112013156513473,
+   "c_min_sim": 0.0,
+   "c_min_formula": 0.0,
+   "withheld_sim": 1.0,
+   "withheld_formula": 1.0,
+   "energy_withheld_sim": 1.0
+  },
+  {
+   "rank": 4,
+   "epsilon": 32,
+   "a": 0.6056006578256736,
+   "c_min_sim": 0.0,
+   "c_min_formula": 0.0,
+   "withheld_sim": 1.0,
+   "withheld_formula": 1.0,
+   "energy_withheld_sim": 1.0
+  },
+  {
+   "rank": 4,
+   "epsilon": 64,
+   "a": 0.3028003289128368,
+   "c_min_sim": 0.0,
+   "c_min_formula": 0.0,
+   "withheld_sim": 1.0,
+   "withheld_formula": 1.0,
+   "energy_withheld_sim": 1.0
+  },
+  {
+   "rank": 4,
+   "epsilon": 256,
+   "a": 0.0757000822282092,
+   "c_min_sim": 0.0,
+   "c_min_formula": 0.0,
+   "withheld_sim": 1.0,
+   "withheld_formula": 1.0,
+   "energy_withheld_sim": 1.0
+  },
+  {
+   "rank": 4,
+   "epsilon": 1024,
+   "a": 0.0189250205570523,
+   "c_min_sim": 0.0,
+   "c_min_formula": 0.0,
+   "withheld_sim": 1.0,
+   "withheld_formula": 1.0,
+   "energy_withheld_sim": 1.0
+  },
+  {
+   "rank": 4,
+   "epsilon": 23000,
+   "a": 0.0008425748282791981,
+   "c_min_sim": 0.0,
+   "c_min_formula": 0.0,
+   "withheld_sim": 1.0,
+   "withheld_formula": 1.0,
+   "energy_withheld_sim": 1.0
+  },
+  {
+   "rank": 8,
+   "epsilon": 0.5,
+   "a": 77.51688420168622,
+   "c_min_sim": 0.91,
+   "c_min_formula": 0.9870152832521207,
+   "withheld_sim": 0.08999999999999997,
+   "withheld_formula": 0.012984716747879266,
+   "energy_withheld_sim": 0.17189999999999994
+  },
+  {
+   "rank": 8,
+   "epsilon": 1,
+   "a": 38.75844210084311,
+   "c_min_sim": 0.91,
+   "c_min_formula": 0.9738574529912108,
+   "withheld_sim": 0.08999999999999997,
+   "withheld_formula": 0.026142547008789152,
+   "energy_withheld_sim": 0.17189999999999994
+  },
+  {
+   "rank": 8,
+   "epsilon": 2,
+   "a": 19.379221050421556,
+   "c_min_sim": 0.88,
+   "c_min_formula": 0.9469934939021792,
+   "withheld_sim": 0.12,
+   "withheld_formula": 0.05300650609782076,
+   "energy_withheld_sim": 0.22560000000000002
+  },
+  {
+   "rank": 8,
+   "epsilon": 4,
+   "a": 9.689610525210778,
+   "c_min_sim": 0.82,
+   "c_min_formula": 0.8908385684208522,
+   "withheld_sim": 0.18000000000000005,
+   "withheld_formula": 0.10916143157914782,
+   "energy_withheld_sim": 0.3276000000000001
+  },
+  {
+   "rank": 8,
+   "epsilon": 8,
+   "a": 4.844805262605389,
+   "c_min_sim": 0.68,
+   "c_min_formula": 0.7662810907051191,
+   "withheld_sim": 0.31999999999999995,
+   "withheld_formula": 0.23371890929488093,
+   "energy_withheld_sim": 0.5375999999999999
+  },
+  {
+   "rank": 8,
+   "epsilon": 16,
+   "a": 2.4224026313026945,
+   "c_min_sim": 0.29,
+   "c_min_formula": 0.41758043529894184,
+   "withheld_sim": 0.71,
+   "withheld_formula": 0.5824195647010582,
+   "energy_withheld_sim": 0.9159
+  },
+  {
+   "rank": 8,
+   "epsilon": 32,
+   "a": 1.2112013156513473,
+   "c_min_sim": 0.0,
+   "c_min_formula": 0.0,
+   "withheld_sim": 1.0,
+   "withheld_formula": 1.0,
+   "energy_withheld_sim": 1.0
+  },
+  {
+   "rank": 8,
+   "epsilon": 64,
+   "a": 0.6056006578256736,
+   "c_min_sim": 0.0,
+   "c_min_formula": 0.0,
+   "withheld_sim": 1.0,
+   "withheld_formula": 1.0,
+   "energy_withheld_sim": 1.0
+  },
+  {
+   "rank": 8,
+   "epsilon": 256,
+   "a": 0.1514001644564184,
+   "c_min_sim": 0.0,
+   "c_min_formula": 0.0,
+   "withheld_sim": 1.0,
+   "withheld_formula": 1.0,
+   "energy_withheld_sim": 1.0
+  },
+  {
+   "rank": 8,
+   "epsilon": 1024,
+   "a": 0.0378500411141046,
+   "c_min_sim": 0.0,
+   "c_min_formula": 0.0,
+   "withheld_sim": 1.0,
+   "withheld_formula": 1.0,
+   "energy_withheld_sim": 1.0
+  },
+  {
+   "rank": 8,
+   "epsilon": 23000,
+   "a": 0.0016851496565583961,
+   "c_min_sim": 0.0,
+   "c_min_formula": 0.0,
+   "withheld_sim": 1.0,
+   "withheld_formula": 1.0,
+   "energy_withheld_sim": 1.0
+  },
+  {
+   "rank": 16,
+   "epsilon": 0.5,
+   "a": 155.03376840337245,
+   "c_min_sim": 0.93,
+   "c_min_formula": 0.993528854481153,
+   "withheld_sim": 0.06999999999999995,
+   "withheld_formula": 0.006471145518846977,
+   "energy_withheld_sim": 0.1350999999999999
+  },
+  {
+   "rank": 16,
+   "epsilon": 1,
+   "a": 77.51688420168622,
+   "c_min_sim": 0.93,
+   "c_min_formula": 0.9870152832521207,
+   "withheld_sim": 0.06999999999999995,
+   "withheld_formula": 0.012984716747879266,
+   "energy_withheld_sim": 0.1350999999999999
+  },
+  {
+   "rank": 16,
+   "epsilon": 2,
+   "a": 38.75844210084311,
+   "c_min_sim": 0.91,
+   "c_min_formula": 0.9738574529912108,
+   "withheld_sim": 0.08999999999999997,
+   "withheld_formula": 0.026142547008789152,
+   "energy_withheld_sim": 0.17189999999999994
+  },
+  {
+   "rank": 16,
+   "epsilon": 4,
+   "a": 19.379221050421556,
+   "c_min_sim": 0.87,
+   "c_min_formula": 0.9469934939021792,
+   "withheld_sim": 0.13,
+   "withheld_formula": 0.05300650609782076,
+   "energy_withheld_sim": 0.24309999999999998
+  },
+  {
+   "rank": 16,
+   "epsilon": 8,
+   "a": 9.689610525210778,
+   "c_min_sim": 0.82,
+   "c_min_formula": 0.8908385684208522,
+   "withheld_sim": 0.18000000000000005,
+   "withheld_formula": 0.10916143157914782,
+   "energy_withheld_sim": 0.3276000000000001
+  },
+  {
+   "rank": 16,
+   "epsilon": 16,
+   "a": 4.844805262605389,
+   "c_min_sim": 0.7,
+   "c_min_formula": 0.7662810907051191,
+   "withheld_sim": 0.30000000000000004,
+   "withheld_formula": 0.23371890929488093,
+   "energy_withheld_sim": 0.51
+  },
+  {
+   "rank": 16,
+   "epsilon": 32,
+   "a": 2.4224026313026945,
+   "c_min_sim": 0.35,
+   "c_min_formula": 0.41758043529894184,
+   "withheld_sim": 0.65,
+   "withheld_formula": 0.5824195647010582,
+   "energy_withheld_sim": 0.8775000000000001
+  },
+  {
+   "rank": 16,
+   "epsilon": 64,
+   "a": 1.2112013156513473,
+   "c_min_sim": 0.0,
+   "c_min_formula": 0.0,
+   "withheld_sim": 1.0,
+   "withheld_formula": 1.0,
+   "energy_withheld_sim": 1.0
+  },
+  {
+   "rank": 16,
+   "epsilon": 256,
+   "a": 0.3028003289128368,
+   "c_min_sim": 0.0,
+   "c_min_formula": 0.0,
+   "withheld_sim": 1.0,
+   "withheld_formula": 1.0,
+   "energy_withheld_sim": 1.0
+  },
+  {
+   "rank": 16,
+   "epsilon": 1024,
+   "a": 0.0757000822282092,
+   "c_min_sim": 0.0,
+   "c_min_formula": 0.0,
+   "withheld_sim": 1.0,
+   "withheld_formula": 1.0,
+   "energy_withheld_sim": 1.0
+  },
+  {
+   "rank": 16,
+   "epsilon": 23000,
+   "a": 0.0033702993131167923,
+   "c_min_sim": 0.0,
+   "c_min_formula": 0.0,
+   "withheld_sim": 1.0,
+   "withheld_formula": 1.0,
+   "energy_withheld_sim": 1.0
+  },
+  {
+   "rank": 32,
+   "epsilon": 0.5,
+   "a": 310.0675368067449,
+   "c_min_sim": 0.94,
+   "c_min_formula": 0.996769678683755,
+   "withheld_sim": 0.06000000000000005,
+   "withheld_formula": 0.0032303213162450106,
+   "energy_withheld_sim": 0.11640000000000006
+  },
+  {
+   "rank": 32,
+   "epsilon": 1,
+   "a": 155.03376840337245,
+   "c_min_sim": 0.94,
+   "c_min_formula": 0.993528854481153,
+   "withheld_sim": 0.06000000000000005,
+   "withheld_formula": 0.006471145518846977,
+   "energy_withheld_sim": 0.11640000000000006
+  },
+  {
+   "rank": 32,
+   "epsilon": 2,
+   "a": 77.51688420168622,
+   "c_min_sim": 0.92,
+   "c_min_formula": 0.9870152832521207,
+   "withheld_sim": 0.07999999999999996,
+   "withheld_formula": 0.012984716747879266,
+   "energy_withheld_sim": 0.15359999999999996
+  },
+  {
+   "rank": 32,
+   "epsilon": 4,
+   "a": 38.75844210084311,
+   "c_min_sim": 0.92,
+   "c_min_formula": 0.9738574529912108,
+   "withheld_sim": 0.07999999999999996,
+   "withheld_formula": 0.026142547008789152,
+   "energy_withheld_sim": 0.15359999999999996
+  },
+  {
+   "rank": 32,
+   "epsilon": 8,
+   "a": 19.379221050421556,
+   "c_min_sim": 0.88,
+   "c_min_formula": 0.9469934939021792,
+   "withheld_sim": 0.12,
+   "withheld_formula": 0.05300650609782076,
+   "energy_withheld_sim": 0.22560000000000002
+  },
+  {
+   "rank": 32,
+   "epsilon": 16,
+   "a": 9.689610525210778,
+   "c_min_sim": 0.83,
+   "c_min_formula": 0.8908385684208522,
+   "withheld_sim": 0.17000000000000004,
+   "withheld_formula": 0.10916143157914782,
+   "energy_withheld_sim": 0.31110000000000004
+  },
+  {
+   "rank": 32,
+   "epsilon": 32,
+   "a": 4.844805262605389,
+   "c_min_sim": 0.69,
+   "c_min_formula": 0.7662810907051191,
+   "withheld_sim": 0.31000000000000005,
+   "withheld_formula": 0.23371890929488093,
+   "energy_withheld_sim": 0.5239
+  },
+  {
+   "rank": 32,
+   "epsilon": 64,
+   "a": 2.4224026313026945,
+   "c_min_sim": 0.35,
+   "c_min_formula": 0.41758043529894184,
+   "withheld_sim": 0.65,
+   "withheld_formula": 0.5824195647010582,
+   "energy_withheld_sim": 0.8775000000000001
+  },
+  {
+   "rank": 32,
+   "epsilon": 256,
+   "a": 0.6056006578256736,
+   "c_min_sim": 0.0,
+   "c_min_formula": 0.0,
+   "withheld_sim": 1.0,
+   "withheld_formula": 1.0,
+   "energy_withheld_sim": 1.0
+  },
+  {
+   "rank": 32,
+   "epsilon": 1024,
+   "a": 0.1514001644564184,
+   "c_min_sim": 0.0,
+   "c_min_formula": 0.0,
+   "withheld_sim": 1.0,
+   "withheld_formula": 1.0,
+   "energy_withheld_sim": 1.0
+  },
+  {
+   "rank": 32,
+   "epsilon": 23000,
+   "a": 0.0067405986262335845,
+   "c_min_sim": 0.0,
+   "c_min_formula": 0.0,
+   "withheld_sim": 1.0,
+   "withheld_formula": 1.0,
+   "energy_withheld_sim": 1.0
+  }
+ ]
+}
