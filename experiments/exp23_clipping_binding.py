@@ -29,9 +29,11 @@ The model, all inside the r x r core (exact, by rotational invariance)
 The cheater passes iff its claimed noise ||S + cG|| + C is large enough to
 clear the challenge threshold, which sits near the honest size sigma r. Writing a = sigma r / C, a first-order
 calculation gives the smallest feasible c as sqrt(max(0, 1 - 2/a)), so the
-cheater can withhold about 1/a of its core noise. With the Gaussian mechanism
-sigma = C k / epsilon (k = sqrt(2 ln(1.25/delta))), so a = k r / epsilon and
-the answer depends only on the privacy level and the rank.
+cheater can withhold about 1/a of its core noise. Privacy is calibrated exactly (Balle and Wang 2018) with client-level
+replace-one sensitivity 2C, so sigma = 2C / mu(eps) and a = 2r / mu(eps): the
+answer depends only on the privacy level and the rank. (An earlier version
+used the classical bound sigma = C sqrt(2 ln(1.25/delta)) / eps, which is not
+valid above eps = 1, and sensitivity C.)
 
 CPU-only. Reads FlexLoRA adapters for realistic learning spectra.
 """
@@ -39,17 +41,32 @@ import argparse
 import glob
 import json
 
+import sys
+import pathlib
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[1]))
+
 import numpy as np
 import torch
+from scipy.optimize import brentq
+
+from fedgt.privacy_calibration import delta_of_eps
 
 DELTA = 1e-5
 K = float(np.sqrt(2 * np.log(1.25 / DELTA)))
 RANKS = [4, 8, 16, 32]
-EPS = [0.5, 1, 2, 4, 8, 16, 32, 64, 256, 1024, 23000]
+EPS = [0.5, 1, 2, 5, 10, 20, 40, 80, 150, 300, 700, 5e7]
 Q = 20
 ALPHA = 0.05
 PASS = 0.9
 N_TRIALS = 4000
+
+
+def mu_of_eps(eps, delta=DELTA):
+    """mu = sensitivity / sigma achieving (eps, delta) exactly (Balle and Wang 2018)."""
+    hi = 1.0
+    while delta_of_eps(eps, hi) < delta:
+        hi *= 2.0
+    return brentq(lambda m: delta_of_eps(eps, m) - delta, 1e-9, hi)
 
 
 def spectra(rank, pattern, n, rng):
@@ -78,7 +95,7 @@ def pass_rate(svals, eps, c, thr, rng, n):
     idx = rng.integers(len(svals), size=n)
     S = np.zeros((n, r, r)); S[:, np.arange(r), np.arange(r)] = svals[idx]
     C = np.linalg.norm(svals[idx], axis=1)                 # clip active at the true norm
-    sigma = C * K / eps
+    sigma = 2.0 * C / mu_of_eps(eps)                       # exact calibration, sensitivity 2C
     G = rng.standard_normal((n, r, r)) * sigma[:, None, None]
     sent = S + c * G
     nrm = np.linalg.norm(sent, axis=(1, 2))
@@ -116,10 +133,10 @@ def main():
     for r in RANKS:
         sv = spectra(r, args.pattern, 120, rng)
         print(f"\nrank {r}")
-        print(f"  {'epsilon':>9} {'a = k r/eps':>12} {'withheld (sim)':>15} {'withheld (formula)':>19} "
+        print(f"  {'epsilon':>9} {'a = 2r/mu':>12} {'withheld (sim)':>15} {'withheld (formula)':>19} "
               f"{'energy withheld':>16}")
         for eps in EPS:
-            a = K * r / eps
+            a = 2.0 * r / mu_of_eps(eps)
             cs = np.round(np.arange(0.0, 1.0001, 0.01), 2)
             c_min = 1.0
             for c in cs:

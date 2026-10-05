@@ -182,16 +182,17 @@ def main():
                             "rank": float(np.mean(a[:, 2] > thr_rank))}
             row = {"rank": rank, "mult": m, "sigma": sigma, "eps_module_round": eps,
                    "visibility": vis, "sigma_rel_err": err, "honest_fa": fa,
-                   "tail_vs_naive": res["naive"]["tail"],
-                   "decl_vs_random": res["random_decl"]["decl"],
-                   "decl_vs_tilt15": res["tilt_15"]["decl"],
-                   "rank_vs_decoy_loud": res["decoy_loud"]["rank"],
+                   "tail_vs_naive": res.get("naive", {}).get("tail"),
+                   "decl_vs_random": res.get("random_decl", {}).get("decl"),
+                   "decl_vs_tilt15": res.get("tilt_15", {}).get("decl"),
+                   "rank_vs_decoy_loud": res.get("decoy_loud", {}).get("rank"),
                    "rank_vs_decoy_weak": res.get("decoy_weak", {}).get("rank"), "all": res}
             rows.append(row)
+            fmt = lambda v, w: f"{v:>{w}.2f}" if v is not None else f"{'-':>{w}}"
             print(f"  {m:>8g} {eps:>17,.1f} {vis:>10.3f} {100*err:>9.3f}% | "
-                  f"{row['tail_vs_naive']:>13.2f} {row['decl_vs_random']:>14.2f} "
-                  f"{row['decl_vs_tilt15']:>14.2f} {row['rank_vs_decoy_loud']:>18.2f} "
-                  f"{(row['rank_vs_decoy_weak'] if row['rank_vs_decoy_weak'] is not None else float('nan')):>18.2f}"
+                  f"{fmt(row['tail_vs_naive'], 13)} {fmt(row['decl_vs_random'], 14)} "
+                  f"{fmt(row['decl_vs_tilt15'], 14)} {fmt(row['rank_vs_decoy_loud'], 18)} "
+                  f"{fmt(row['rank_vs_decoy_weak'], 18)}"
                   f" | {fa[0]:.2f} {fa[1]:.2f} {fa[2]:.2f}"
                   f"   [{time.time()-t0:.0f}s]", flush=True)
             with open(args.out, "w") as f:
