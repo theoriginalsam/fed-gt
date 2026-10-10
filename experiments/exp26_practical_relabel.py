@@ -150,6 +150,59 @@ def features(y, L, N, sigma, P_sorted_ref):
     return np.concatenate(base)
 
 
+def crossfit_eval(honest, attack, rng, k_folds=5, n_pool=20, n_boot=1000):
+    """Client-disjoint evaluation of an informed auditor.
+
+    Every test client is scored by a classifier trained on other clients only
+    (k-fold over clients). Its pooled-T decision uses a threshold fitted on the
+    honest pooled scores of all other clients (leave-one-client-out). So the
+    clients used to train the classifier, to set the threshold and to measure
+    power never overlap. Uncertainty is a bootstrap over clients, the
+    independent unit here (transcripts of one client share its adapters).
+    """
+    keys = sorted({k for k, _ in honest})
+    order = rng.permutation(len(keys))
+    fold = {keys[i]: j % k_folds for j, i in enumerate(order)}
+    oof = {0: {}, 1: {}}
+    for f in range(k_folds):
+        Xtr, ytr = [], []
+        for lab, rows in ((0, honest), (1, attack)):
+            for k, x in rows:
+                if fold[k] != f:
+                    Xtr.append(x); ytr.append(lab)
+        clf = HistGradientBoostingClassifier(max_iter=300, learning_rate=0.08, random_state=0)
+        clf.fit(np.array(Xtr), np.array(ytr))
+        for lab, rows in ((0, honest), (1, attack)):
+            ks = [k for k, _ in rows if fold[k] == f]
+            if not ks:
+                continue
+            X = np.array([x for k, x in rows if fold[k] == f])
+            p = np.clip(clf.predict_proba(X)[:, 1], 1e-6, 1 - 1e-6)
+            for k, v in zip(ks, np.log(p / (1 - p))):
+                oof[lab].setdefault(k, []).append(v)
+    pooled = {lab: {k: np.array([np.random.default_rng(hash((k, lab, i)) % 2**32).choice(v, T_POOL).sum()
+                                 for i in range(n_pool)]) for k, v in oof[lab].items()} for lab in (0, 1)}
+    pw, fp = {}, {}
+    for k in keys:
+        thr = np.quantile(np.concatenate([pooled[0][j] for j in keys if j != k]), 1 - ALPHA)
+        pw[k] = float(np.mean(pooled[1][k] > thr))
+        fp[k] = float(np.mean(pooled[0][k] > thr))
+    per_round = [(0, v) for k in keys for v in oof[0][k]] + [(1, v) for k in keys for v in oof[1][k]]
+    auc = roc_auc_score([l for l, _ in per_round], [v for _, v in per_round])
+    boot_auc, boot_pw = [], []
+    for _ in range(n_boot):
+        ks = rng.choice(keys, len(keys))
+        y = [0] * sum(len(oof[0][k]) for k in ks) + [1] * sum(len(oof[1][k]) for k in ks)
+        sc = np.concatenate([oof[0][k] for k in ks] + [oof[1][k] for k in ks])
+        boot_auc.append(roc_auc_score(y, sc))
+        boot_pw.append(np.mean([pw[k] for k in ks]))
+    return {"n_clients": len(keys), "auc": float(auc),
+            "auc_ci": [float(np.quantile(boot_auc, 0.025)), float(np.quantile(boot_auc, 0.975))],
+            "power": float(np.mean(list(pw.values()))),
+            "power_ci": [float(np.quantile(boot_pw, 0.025)), float(np.quantile(boot_pw, 0.975))],
+            "fpr": float(np.mean(list(fp.values())))}
+
+
 def run_rank(r, S, pub, keys, rng, h_factor=0.1, public="other_seeds"):
     if public == "same_seed":
         # the cheater's model comes from other clients of the test seed (it knows P well)
@@ -160,9 +213,6 @@ def run_rank(r, S, pub, keys, rng, h_factor=0.1, public="other_seeds"):
         pub = pub | model                          # those clients are no longer test clients
     else:
         P = S[pub]
-    test_keys = np.unique(keys[~pub])
-    rng.shuffle(test_keys)
-    train_k, eval_k = set(test_keys[::2]), set(test_keys[1::2])
     sd = P.std(0).mean()
     h = h_factor * sd
     rows = []
@@ -176,40 +226,18 @@ def run_rank(r, S, pub, keys, rng, h_factor=0.1, public="other_seeds"):
                     data[kind].append((keys[i], features(*transcript(kind, S[i], sigma, rel, rng), sigma, None)))
         out = {"eps": eps, "sigma": sigma, "h": h}
         for adv in ("shaping", "relabel"):
-            Xtr, ytr, Xev, yev, kev = [], [], [], [], []
-            for lab, kind in ((0, "honest"), (1, adv)):
-                for k, f in data[kind]:
-                    (Xtr if k in train_k else Xev).append(f)
-                    (ytr if k in train_k else yev).append(lab)
-                    if k in eval_k: kev.append((k, lab))
-            clf = HistGradientBoostingClassifier(max_iter=300, learning_rate=0.08, random_state=0)
-            clf.fit(np.array(Xtr), np.array(ytr))
-            p = np.clip(clf.predict_proba(np.array(Xev))[:, 1], 1e-6, 1 - 1e-6)
-            lo = np.log(p / (1 - p))
-            yev = np.array(yev)
-            auc = roc_auc_score(yev, lo)
-            # pool T rounds of one client: sum of log-odds over T random transcripts
-            by = {}
-            for (k, lab), v in zip(kev, lo):
-                by.setdefault((k, lab), []).append(v)
-            pooled = {0: [], 1: []}
-            for (k, lab), v in by.items():
-                v = np.array(v)
-                for _ in range(20):
-                    pooled[lab].append(v[rng.integers(len(v), size=T_POOL)].sum())
-            thr = np.quantile(pooled[0], 1 - ALPHA)
-            power = float(np.mean(np.array(pooled[1]) > thr))
-            out[adv] = {"auc_one_round": float(auc), f"power_T{T_POOL}": power,
-                        "n_eval_clients": len({k for k, _ in kev})}
+            out[adv] = crossfit_eval(data["honest"], data[adv], rng)
         # how much does the relabeller move the learning, relative to the noise it withholds
         move = np.mean([np.linalg.norm(rel.T(s) - s) for s in S[~pub][:300]])
         out["T_shift_over_sigma_sqrt_r"] = float(move / (sigma * np.sqrt(r)))
         rows.append(out)
-        print(f"  r={r:2d} eps={eps:>6}  sigma={sigma:.4f}  shaping AUC {out['shaping']['auc_one_round']:.3f} "
-              f"power {out['shaping'][f'power_T{T_POOL}']:.2f}  |  relabel AUC {out['relabel']['auc_one_round']:.3f} "
-              f"power {out['relabel'][f'power_T{T_POOL}']:.2f}  |  |T(s)-s|/(sigma sqrt r) {out['T_shift_over_sigma_sqrt_r']:.2f}",
-              flush=True)
-    return {"rank": r, "n_public": int(pub.sum()), "n_test": int((~pub).sum()), "rows": rows}
+        R = out["relabel"]; Sh = out["shaping"]
+        print(f"  r={r:2d} eps={eps:>8}  clients={R['n_clients']}  shaping power {Sh['power']:.2f}  |  relabel AUC "
+              f"{R['auc']:.3f} [{R['auc_ci'][0]:.2f},{R['auc_ci'][1]:.2f}]  power {R['power']:.2f} "
+              f"[{R['power_ci'][0]:.2f},{R['power_ci'][1]:.2f}]  FPR {R['fpr']:.3f}", flush=True)
+    runs = sorted({k.rsplit("_", 1)[0] for k in keys[~pub]})
+    return {"rank": r, "n_public": int(pub.sum()), "n_test_adapters": int((~pub).sum()),
+            "n_test_runs": len(runs), "rows": rows}
 
 
 def main():
@@ -233,7 +261,7 @@ def main():
     out = {"config": {"c": C_KEEP, "alpha": ALPHA, "T": T_POOL, "eps": EPS, "draws": DRAWS,
                       "public": args.public, "test": "seed 44", "h_factor": args.h, "feats": args.feats},
            "ranks": res}
-    path = ROOT / "results" / f"exp26_practical_relabel{args.tag}.json"
+    path = ROOT / "results" / f"exp26b_practical_relabel{args.tag}.json"
     json.dump(out, open(path, "w"), indent=1)
     print(f"Saved: {path}")
 

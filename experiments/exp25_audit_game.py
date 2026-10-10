@@ -81,7 +81,9 @@ def population(seed=SEED, n=N_CLIENTS, sd=1.0, dist="lognormal", rho=0.0):
     return W, V, rank, u_soph
 
 
-def play(F, world, curves, W, V, rank, u_soph, s=0.0, gamma=1.0):
+def play(F, world, curves, W, V, rank, u_soph, s=0.0, gamma=1.0, d_rel=None):
+    """d_rel: flag rate of a relabelling client (default alpha, Proposition 2's idealised case)."""
+    d_rel = ALPHA if d_rel is None else d_rel
     """Best response of every client. Returns per-client strategy and noise kept (c^2)."""
     n = len(W)
     if world == "sealed":
@@ -106,7 +108,7 @@ def play(F, world, curves, W, V, rank, u_soph, s=0.0, gamma=1.0):
         best_shape[m] = U[np.arange(m.sum()), k]
         best_c[m] = c[k]
     soph = u_soph < s
-    u_rel = np.where(soph, W + V - ALPHA * F, -np.inf)
+    u_rel = np.where(soph, W + V - d_rel * F, -np.inf)
     u = np.stack([np.zeros(n), u_hon, best_shape, u_rel])
     choice = np.argmax(u, 0)                     # ties go to the earlier (honest) option
     kept = np.select([choice == 1, choice == 2, choice == 3], [1.0, best_c ** 2, 0.0], np.nan)
@@ -222,5 +224,28 @@ def main():
     print(f"\nSaved: {path}")
 
 
+def relabel_sensitivity():
+    """How the result depends on the idealised equal flag rate: relabellers flagged at d_rel >= alpha."""
+    curves = load_curves(10)
+    W, V, rank, u_soph = population()
+    Fs = np.round(np.logspace(-1, 2, 31), 4)
+    out = []
+    for d in (0.05, 0.10, 0.25, 0.50, 0.80):
+        rows = [summarise(*play(F, "audit", curves, W, V, rank, u_soph, 0.5, 1.0, d)) for F in Fs]
+        hs = [r["honest_share_of_participants"] for r in rows]
+        k = int(np.argmax(hs))
+        out.append({"d_rel": d, "peak_share": hs[k], "peak_F": float(Fs[k]), "end_share": hs[-1],
+                    "end_participation": rows[-1]["participation"],
+                    "max_honest_of_all": max(r["honest_of_all"] for r in rows),
+                    "sweep": [dict(F=float(F), **r) for F, r in zip(Fs, rows)]})
+        print(f"d_rel={d:.2f}: honest share of participants peaks {hs[k]:.2f} at F={Fs[k]:.1f}, "
+              f"{hs[-1]:.2f} at F=100 (participation {rows[-1]['participation']:.2f}); "
+              f"best honest/all {out[-1]['max_honest_of_all']:.2f}")
+    json.dump(out, open(RES / "exp25_relabel_sensitivity.json", "w"), indent=1)
+
+
 if __name__ == "__main__":
-    main()
+    if len(sys.argv) > 1 and sys.argv[1] == "--relabel-sensitivity":
+        relabel_sensitivity()
+    else:
+        main()
