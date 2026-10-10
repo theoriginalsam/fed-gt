@@ -1,0 +1,78 @@
+{
+ "condition": "1e5d",
+ "denoise": true,
+ "clip": 1.5,
+ "impl": "torch",
+ "sigma": 0.0067724483096997705,
+ "eps_per_release": 100000.0,
+ "eps_client_final": {
+  "40": 99999.99999999255,
+  "7": 99999.99999999255,
+  "1": 99999.99999999255,
+  "47": 99999.99999999255,
+  "17": 99999.99999999255
+ },
+ "release_log": [
+  {
+   "client": 40,
+   "round": 1,
+   "norm": 2.104728309965156,
+   "clipped": true,
+   "eps_client": 99999.99999999255
+  },
+  {
+   "client": 7,
+   "round": 1,
+   "norm": 1.2856700590359984,
+   "clipped": false,
+   "eps_client": 99999.99999999255
+  },
+  {
+   "client": 1,
+   "round": 1,
+   "norm": 1.292674604511961,
+   "clipped": false,
+   "eps_client": 99999.99999999255
+  },
+  {
+   "client": 47,
+   "round": 1,
+   "norm": 2.702209280890966,
+   "clipped": true,
+   "eps_client": 99999.99999999255
+  },
+  {
+   "client": 17,
+   "round": 1,
+   "norm": 1.283592982964452,
+   "clipped": false,
+   "eps_client": 99999.99999999255
+  }
+ ],
+ "rounds": [
+  {
+   "round": 1,
+   "avg_loss": 3.2326331081986424,
+   "round_time_s": 292.5520849227905,
+   "accuracy": 0.5494,
+   "f1_macro": 0.5429692999530219,
+   "perplexity": 14.319986304987331,
+   "sealed": {
+    "sigma": 0.0067724483096997705,
+    "clip": 1.5,
+    "eps_per_release": 100000.0,
+    "frac_clipped": 0.4,
+    "median_norm": 1.292674604511961,
+    "max_eps_client": 99999.99999999255,
+    "denoise": {
+     "sigma_agg": 0.004366912484559658,
+     "kept": 0,
+     "modules": 56,
+     "modules_with_signal": 0,
+     "in_norm2": 7839.603706359863,
+     "out_norm2": 0.0
+    }
+   }
+  }
+ ]
+}
