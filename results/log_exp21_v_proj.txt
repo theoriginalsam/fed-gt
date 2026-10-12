@@ -1,0 +1,14 @@
+nohup: ignoring input
+================================================================================================================
+Exp 21: the full battery on v_proj  (sigma=5e-05, c=0.5, q=20, alpha=0.05, cal=120, n=60)
+================================================================================================================
+
+rank 4  (512x3584)  gamma 1.098  depth 0.2212  visibility 5.59   [215s]
+   attack evades 0.10 (honest 0.03)   defence power 0.75 (honest 0.03)
+   decoy caught 1.00   excess 5.30 vs honest 0.95   steals 15.7%   distorts 0.180   fine to deter 0.17 V
+
+rank 8  (512x3584)  gamma 1.358  depth 0.0648  visibility 1.85   [567s]
+   attack evades 0.10 (honest 0.02)   defence power 0.82 (honest 0.03)
+   decoy caught 1.00   excess 1.99 vs honest 0.95   steals 9.7%   distorts 0.085   fine to deter 0.10 V
+
+Saved: results/exp21_v_proj_security.json

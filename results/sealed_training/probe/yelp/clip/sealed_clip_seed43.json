@@ -1,0 +1,65 @@
+{
+ "condition": "clip",
+ "denoise": false,
+ "clip": 1.5,
+ "impl": "torch",
+ "sigma": 0.0,
+ "eps_per_release": null,
+ "eps_client_final": null,
+ "release_log": [
+  {
+   "client": 2,
+   "round": 1,
+   "norm": 1.3089796060627976,
+   "clipped": false,
+   "eps_client": Infinity
+  },
+  {
+   "client": 18,
+   "round": 1,
+   "norm": 1.2919525620389272,
+   "clipped": false,
+   "eps_client": Infinity
+  },
+  {
+   "client": 44,
+   "round": 1,
+   "norm": 2.166659122312994,
+   "clipped": true,
+   "eps_client": Infinity
+  },
+  {
+   "client": 48,
+   "round": 1,
+   "norm": 2.691971655492231,
+   "clipped": true,
+   "eps_client": Infinity
+  },
+  {
+   "client": 9,
+   "round": 1,
+   "norm": 1.2863096594298091,
+   "clipped": false,
+   "eps_client": Infinity
+  }
+ ],
+ "rounds": [
+  {
+   "round": 1,
+   "avg_loss": 3.1833520001173023,
+   "round_time_s": 347.9725549221039,
+   "accuracy": 0.4832,
+   "f1_macro": 0.4746486103172307,
+   "perplexity": 9.131367239750931,
+   "sealed": {
+    "sigma": 0.0,
+    "clip": 1.5,
+    "eps_per_release": null,
+    "frac_clipped": 0.4,
+    "median_norm": 1.3089796060627976,
+    "max_eps_client": Infinity,
+    "denoise": null
+   }
+  }
+ ]
+}

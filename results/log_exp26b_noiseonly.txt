@@ -1,0 +1,14 @@
+15120 adapters; h=0.1 public=other_seeds feats=noise_only
+  r= 4 eps=     1.0  clients=72  shaping power 1.00  |  relabel AUC 0.600 [0.58,0.62]  power 0.35 [0.28,0.42]  FPR 0.051
+  r= 4 eps=    80.0  clients=72  shaping power 1.00  |  relabel AUC 0.575 [0.56,0.59]  power 0.26 [0.20,0.32]  FPR 0.051
+  r= 4 eps= 24000.0  clients=72  shaping power 1.00  |  relabel AUC 0.551 [0.54,0.56]  power 0.19 [0.16,0.23]  FPR 0.051
+  r= 8 eps=     1.0  clients=36  shaping power 1.00  |  relabel AUC 0.652 [0.62,0.68]  power 0.60 [0.50,0.69]  FPR 0.053
+  r= 8 eps=    80.0  clients=36  shaping power 1.00  |  relabel AUC 0.646 [0.62,0.67]  power 0.54 [0.47,0.61]  FPR 0.051
+  r= 8 eps= 24000.0  clients=36  shaping power 1.00  |  relabel AUC 0.851 [0.83,0.87]  power 0.99 [0.98,1.00]  FPR 0.051
+  r=16 eps=     1.0  clients=24  shaping power 1.00  |  relabel AUC 0.745 [0.71,0.78]  power 0.84 [0.77,0.90]  FPR 0.052
+  r=16 eps=    80.0  clients=24  shaping power 1.00  |  relabel AUC 0.717 [0.68,0.75]  power 0.81 [0.72,0.88]  FPR 0.054
+  r=16 eps= 24000.0  clients=24  shaping power 1.00  |  relabel AUC 0.924 [0.91,0.94]  power 1.00 [1.00,1.00]  FPR 0.052
+  r=32 eps=     1.0  clients=18  shaping power 1.00  |  relabel AUC 0.823 [0.78,0.86]  power 0.88 [0.75,0.99]  FPR 0.056
+  r=32 eps=    80.0  clients=18  shaping power 1.00  |  relabel AUC 0.803 [0.76,0.85]  power 0.86 [0.74,0.96]  FPR 0.053
+  r=32 eps= 24000.0  clients=18  shaping power 1.00  |  relabel AUC 0.955 [0.95,0.96]  power 1.00 [1.00,1.00]  FPR 0.050
+Saved: /home/jovyan/FedGT/results/exp26b_practical_relabel_noiseonly.json

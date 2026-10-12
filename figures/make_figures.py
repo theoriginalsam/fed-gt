@@ -21,6 +21,7 @@ plt.rcParams.update({
 COL = {4: "#0072B2", 8: "#E69F00", 16: "#009E73", 32: "#D55E00"}
 MK = {4: "o", 8: "s", 16: "^", 32: "D"}
 W1, W2 = 3.45, 7.0
+DATA_SEALED = ROOT / "results" / "sealed_training"
 
 
 def save(fig, name):
@@ -287,41 +288,52 @@ def fig_game():
 
 # --------------------------------------------------------------- training with enforced noise (GPU runs)
 def fig_utility():
-    """(a) Perplexity per round for each full run. (b) Round-1 perplexity against eps per release,
-    with the number of singular components the server's denoiser kept."""
-    D = ROOT / "results" / "sealed_training"
+    """(a) Perplexity per round for each 20-round run (seed 42). (b) Share of clip-only training's
+    one-round perplexity gain reached by denoised releases, per seed, against eps per release."""
+    D = DATA_SEALED
     load = lambda f: json.load(open(f))
     full = {}
-    for f in sorted((D / "yelp").glob("*/sealed_*_seed*.json")):
-        d = load(f)
-        full[d["condition"]] = d
+    for f in sorted((D / "yelp").glob("*/sealed_*_seed42.json")):
+        d = load(f); full[d["condition"]] = d
     probe = {}
     for f in sorted((D / "probe" / "yelp").glob("*/sealed_*_seed*.json")):
-        d = load(f)
-        probe[float(d["condition"].rstrip("d"))] = d
-    base = full["base"]["rounds"][0]["perplexity"]
-    fig, (a, b) = plt.subplots(1, 2, figsize=(W2, 2.2))
+        d = load(f); seed = int(f.stem.split("seed")[1])
+        probe.setdefault(seed, {})[d["condition"]] = d["rounds"][0]
+    base42 = full["base"]["rounds"][0]["perplexity"]
+    fig, (a, b) = plt.subplots(1, 2, figsize=(W2, 2.3))
     sty = {"none": ("no clip, no noise", "#000000", "-"), "clip": ("clip only", "#777777", "--"),
-           "1e6d": (r"$\varepsilon=10^6$ + denoise", "#0072B2", "-"),
-           "1e7d": (r"$\varepsilon=10^7$ + denoise", "#009E73", "-"),
-           "1e7": (r"$\varepsilon=10^7$, no denoise", "#D55E00", ":")}
+           "1e7": (r"$\varepsilon=10^7$, raw", "#D55E00", ":"),
+           "1e7d": (r"$\varepsilon=10^7$, denoised", "#009E73", "-"),
+           "1e6d": (r"$\varepsilon=10^6$, denoised", "#0072B2", "-")}
     for c, (lab, col, ls) in sty.items():
         if c in full:
             y = [r["perplexity"] for r in full[c]["rounds"]]
             a.plot(np.arange(1, len(y) + 1), y, ls, color=col, label=lab)
-    a.axhline(base, color="#bbbbbb", ls=":", lw=1, label="base model")
+    a.axhline(base42, color="#bbbbbb", ls=":", lw=1, label="base model")
     a.set_xlabel("round"); a.set_ylabel("perplexity"); a.set_xticks([1, 5, 10, 15, 20])
-    a.legend(loc="upper right", fontsize=6); panel(a, "(a)")
-    eps = sorted(probe)
-    ppl = [probe[e]["rounds"][0]["perplexity"] for e in eps]
-    kept = [probe[e]["rounds"][0]["sealed"]["denoise"]["kept"] for e in eps]
-    b.plot(eps, ppl, "o-", color="#0072B2", label="denoised, one round")
-    for e, p_, k in zip(eps, ppl, kept):
-        b.annotate(f"{k}", (e, p_), textcoords="offset points", xytext=(0, 5), ha="center", fontsize=6)
-    b.axhline(base, color="#bbbbbb", ls=":", lw=1, label="base model")
-    b.axhline(full["clip"]["rounds"][0]["perplexity"], color="#777777", ls="--", lw=1, label="clip only, one round")
-    b.set_xscale("log"); b.set_xlabel(r"$\varepsilon$ per release"); b.set_ylabel("perplexity after one round")
-    b.legend(loc="center left", fontsize=6); panel(b, "(b)")
+    a.set_ylim(7, 15); a.legend(loc="upper right", fontsize=6); panel(a, "(a)")
+    levels = ["1e4d", "1e5d", "1e6d", "1e7d", "1e8d"]
+    eps = [float(l[:-1]) for l in levels]
+    base = {42: base42}
+    clip1 = {42: full["clip"]["rounds"][0]["perplexity"]}
+    for sd in (43, 44):
+        base[sd] = probe[sd]["1e4d"]["perplexity"]          # nothing kept: the base model
+        clip1[sd] = probe[sd]["clip"]["perplexity"]
+    shades = {42: "#0072B2", 43: "#56B4E9", 44: "#003f6b"}
+    fr_all, kept_all = [], []
+    for sd in sorted(probe):
+        fr = [(base[sd] - probe[sd][l]["perplexity"]) / (base[sd] - clip1[sd]) for l in levels]
+        fr_all.append(fr)
+        kept_all.append([probe[sd][l]["sealed"]["denoise"]["kept"] for l in levels])
+        b.plot(eps, fr, "o-", color=shades[sd], ms=3, lw=0.9, label=f"seed {sd}")
+    kept_mean = np.mean(kept_all, 0)
+    for e, f_, k in zip(eps, np.max(fr_all, 0), kept_mean):
+        b.annotate(f"{k:.0f}", (e, f_), textcoords="offset points", xytext=(0, 5), ha="center", fontsize=6)
+    b.axhline(1, color="#777777", ls="--", lw=1)
+    b.axhline(0, color="#bbbbbb", ls=":", lw=1)
+    b.set_xscale("log"); b.set_xlabel(r"$\varepsilon$ per release")
+    b.set_ylabel("share of clip-only gain, one round"); b.set_ylim(-0.08, 1.15)
+    b.legend(loc="upper left", fontsize=6); panel(b, "(b)")
     fig.tight_layout(w_pad=1.2)
     save(fig, "utility")
 

@@ -33,9 +33,9 @@ Tables are named by caption because their numbers depend on the build.
 | Fig. fine needed for honesty | `python experiments/exp20_incentive_frontier.py` | `results/exp20_incentive_frontier.json` |
 | Table "False alarm rates ... held-out adapters" | `python experiments/exp24_heldout_calibration.py` | `results/exp24_heldout_calibration.json` |
 | Table "Effective privacy of the relabelling cheater in the Gaussian model", Fig. regime map (b) | `python experiments/exp23_clipping_binding.py` | `results/exp23_clipping_binding.json` |
-| Table "An informed auditor against a relabeller built from real adapters" | `bash run_on_gpu_machine_v2.sh` (CPU; client-disjoint evaluation) | `results/exp26b_practical_relabel_{main,h0,h0_same,noiseonly}.json` |
+| Table "An informed auditor against a relabeller built from real adapters" | `bash run_on_gpu_machine_v2.sh` (CPU; client-disjoint evaluation) | `results/exp26b_practical_relabel_{main,h0,h0_same,noiseonly}.json` (logs: `results/log_exp26b_*.txt`) |
 | Table "Checks at realistic privacy noise", Fig. regime map (a) | `python experiments/exp22_realistic_noise.py` and the transition sweep | `results/exp22_realistic_noise.json`, `results/exp22b_transition_sweep.json` |
-| Value-projection results (limitations) | `python experiments/exp21_vproj_security.py --module v_proj --ranks 4 8` | `results/exp21_v_proj_security.json` |
+| Value-projection results (limitations) | `python experiments/exp21_vproj_security.py --module v_proj --ranks 4 8 --adapters <rounds 1-6 of the 20-round run>` | `results/exp21_v_proj_security.json` (log: `results/log_exp21_v_proj.txt`) |
 | Fig. audit game with exit, robustness | `python experiments/exp25_audit_game.py` | `results/exp25_audit_game.json` |
 | Relabeller detection-rate sensitivity | `python experiments/exp25_audit_game.py --relabel-sensitivity` | `results/exp25_relabel_sensitivity.json` |
 | Table "Attacks on the sealed component" | `python -m pytest tests/test_sealed_noise.py` | test output (19 tests) |
@@ -54,6 +54,7 @@ Repository `fed-llm-rework`, branch `algo/ablations`; see `SEALED_GPU_RUNS.md` t
 python experiments/run_sealed_utility.py --dataset yelp --seed 42 --conditions base none clip
 python experiments/run_sealed_utility.py --dataset yelp --seed 42 --conditions 1e4d 1e5d 1e6d 1e7d 1e8d --num-rounds 1 --results-dir results_sealed_probe
 python experiments/run_sealed_utility.py --dataset yelp --seed 42 --conditions 1e6d 1e7d 1e7
+for sd in 43 44; do python experiments/run_sealed_utility.py --dataset yelp --seed $sd --conditions clip 1e4d 1e5d 1e6d 1e7d 1e8d --num-rounds 1 --results-dir results_sealed_probe; done
 ```
 
 Configuration: Qwen2.5-7B-Instruct (bf16), LoRA on q_proj and v_proj of all 28 layers, ranks

@@ -1,0 +1,31 @@
+{
+  "method": "flexlora",
+  "seed": 43,
+  "alpha": 0.5,
+  "rounds": [
+    {
+      "round": 1,
+      "avg_loss": 3.1833520001173023,
+      "round_time_s": 339.19563460350037,
+      "accuracy": 0.5082,
+      "f1_macro": 0.49702354025155343,
+      "perplexity": 9.552299307528733,
+      "sealed": {
+        "sigma": 0.0006714603983088412,
+        "clip": 1.5,
+        "eps_per_release": 10000000.0,
+        "frac_clipped": 0.4,
+        "median_norm": 1.3089796060627976,
+        "max_eps_client": 10000000.000441402,
+        "denoise": {
+          "sigma_agg": 0.0004226272180811353,
+          "kept": 137,
+          "modules": 56,
+          "modules_with_signal": 56,
+          "in_norm2": 74.66849797964096,
+          "out_norm2": 0.9588655054103583
+        }
+      }
+    }
+  ]
+}

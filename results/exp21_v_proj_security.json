@@ -1,0 +1,51 @@
+{
+  "config": {
+    "module": "v_proj",
+    "sigma": 5e-05,
+    "cheat": 0.5,
+    "q": 20,
+    "alpha": 0.05,
+    "cal": 120,
+    "test": 60
+  },
+  "rows": [
+    {
+      "rank": 4,
+      "d1": 512,
+      "d2": 3584,
+      "edge": 82.49393518635259,
+      "gamma": 1.0979205359176556,
+      "decay_depth": 0.2211667963209058,
+      "visibility": 5.590156286790405,
+      "attack_evades": 0.1,
+      "attack_honest_fa": 0.03333333333333333,
+      "defence_power": 0.75,
+      "defence_honest_fa": 0.03333333333333333,
+      "decoy_caught": 1.0,
+      "decoy_excess": 5.296205804480906,
+      "honest_excess": 0.9537310393369612,
+      "decoy_stolen": 0.1570098463613775,
+      "decoy_distortion": 0.18018704020043022,
+      "penalty_to_deter_decoy": 0.16527352248566052
+    },
+    {
+      "rank": 8,
+      "d1": 512,
+      "d2": 3584,
+      "edge": 82.49393518635259,
+      "gamma": 1.3581872063579823,
+      "decay_depth": 0.06482194357224483,
+      "visibility": 1.8483477970056827,
+      "attack_evades": 0.1,
+      "attack_honest_fa": 0.016666666666666666,
+      "defence_power": 0.8166666666666667,
+      "defence_honest_fa": 0.03333333333333333,
+      "decoy_caught": 1.0,
+      "decoy_excess": 1.98543312515592,
+      "honest_excess": 0.9523253220185227,
+      "decoy_stolen": 0.09737870172694651,
+      "decoy_distortion": 0.08516719725742947,
+      "penalty_to_deter_decoy": 0.10250389655468055
+    }
+  ]
+}
