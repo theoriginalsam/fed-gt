@@ -84,9 +84,13 @@ def fig_attack():
     ax.plot(x, [r["attack_flag"] for r in order], "o", color="#D55E00", label="energy (tail) test vs. shaping cheater")
     ax.plot(x, [r["defence_power"] for r in order], "s", color="#0072B2", label="declared-subspace challenge vs. shaping cheater")
     ax.plot(x, [r["decoy_combined_flag"] for r in order], "^", color="#E69F00", label="declaration check vs. decoy")
+    code = {"yelp": "Y", "alpaca": "A", "gsm8k": "G", "flexlora": "F", "hetero_spa": "S"}
+    ax.set_xticks(x)
+    ax.set_xticklabels([code[r["dataset"]] + code[r["method"]] for r in order], fontsize=5.5)
+    ax.tick_params(axis="x", length=2, pad=1.5)
     for k in range(4):
-        ax.text(x[k * 6:(k + 1) * 6].mean(), -0.2, f"rank {4 * 2 ** k}", ha="center", fontsize=7)
-    ax.set_xticks([]); ax.set_ylim(-0.05, 1.08); ax.set_ylabel("flag rate")
+        ax.text(x[k * 6:(k + 1) * 6].mean(), -0.3, f"rank {4 * 2 ** k}", ha="center", fontsize=7)
+    ax.set_ylim(-0.05, 1.08); ax.set_ylabel("flag rate")
     ax.legend(loc="center left", bbox_to_anchor=(0.0, 0.62), fontsize=6.6)
     save(fig, "attack_cells")
 
