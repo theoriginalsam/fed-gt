@@ -33,7 +33,8 @@ Tables are named by caption because their numbers depend on the build.
 | Fig. fine needed for honesty | `python experiments/exp20_incentive_frontier.py` | `results/exp20_incentive_frontier.json` |
 | Table "False alarm rates ... held-out adapters" | `python experiments/exp24_heldout_calibration.py` | `results/exp24_heldout_calibration.json` |
 | Table "Effective privacy of the relabelling cheater in the Gaussian model", Fig. regime map (b) | `python experiments/exp23_clipping_binding.py` | `results/exp23_clipping_binding.json` |
-| Table "An informed auditor against a relabeller built from real adapters" | `bash run_on_gpu_machine_v2.sh` (CPU; client-disjoint evaluation) | `results/exp26b_practical_relabel_{main,h0,h0_same,noiseonly}.json` (logs: `results/log_exp26b_*.txt`) |
+| Table "An informed auditor against a relabeller built from real adapters" | `bash run_on_gpu_machine_v3.sh` (CPU; cores clipped to norm 1, train / calibrate / test split of clients, 10 distinct module adapters pooled) | `results/exp26c_practical_relabel_{main,h0,h0_same,noiseonly}.json` (logs: `results/log_exp26c_*.txt`) |
+| Earlier unclipped diagnostic of the same table (superseded) | `bash run_on_gpu_machine_v2.sh` (`--no-clip --split crossfit`) | `results/exp26b_practical_relabel_*.json` |
 | Table "Checks at realistic privacy noise", Fig. regime map (a) | `python experiments/exp22_realistic_noise.py` and the transition sweep | `results/exp22_realistic_noise.json`, `results/exp22b_transition_sweep.json` |
 | Value-projection results (limitations) | `python experiments/exp21_vproj_security.py --module v_proj --ranks 4 8 --adapters <rounds 1-6 of the 20-round run>` | `results/exp21_v_proj_security.json` (log: `results/log_exp21_v_proj.txt`) |
 | Fig. audit game with exit, robustness | `python experiments/exp25_audit_game.py` | `results/exp25_audit_game.json` |

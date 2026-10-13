@@ -10,9 +10,11 @@ that knows the attack can still tell the cheater apart.
 Setting. In the client's declared basis (its top singular vectors) the core
 learning is diag(s), with s the r singular values of B A; off-diagonal core
 entries carry no learning and stay honestly noised. Singular values are
-normalised by the median update norm C of their (layer, rank) group, so the
-clip norm is 1 and sigma follows from exact Gaussian calibration with
-sensitivity 2.
+normalised by the median update norm of their (layer, rank) group, computed on
+public adapters, and then clipped to norm 1 (honest cores and the cheater's
+public pool alike), so sigma from exact Gaussian calibration with sensitivity 2
+is the honest mechanism's real budget. --no-clip gives the earlier unclipped
+diagnostic (exp26b), whose budgets are nominal only.
 
     honest     Y = s + Z,          commits (L, N) = (s, Z)
     shaping    Y = s + cZ,         commits (s, cZ)              (positive control)
@@ -26,14 +28,24 @@ The relabeller is built only from public adapters (seeds 42 and 43):
 Test clients come from seed 44, never seen by the relabeller.
 
 Auditor. The strongest auditor we can build: it sees the whole diagonal
-transcript (Y, L, N), knows the attack, and trains a gradient-boosted classifier
-on transcripts of half the test clients; it is scored on the other half.
-Per-client decisions pool T rounds (module adapters of that client) by summing
-log-odds, with the threshold at the honest clients' 95th percentile.
+transcript (Y, L, N) (or only N), knows the attack, and trains a
+gradient-boosted classifier on attack and honest transcripts. A client's
+decision sums the log-odds of T = 10 of its module transcripts: 10 distinct
+saved module adapters of that client, one noise draw each. These are modules
+of one or two saved rounds, not ten chronological training rounds.
+
+Evaluation (--split strict, the default). Test clients are split into five
+folds. For each test fold and each of the other four folds as calibration
+fold, a classifier is trained on the remaining three folds and frozen; the
+threshold is the 95th percentile of the honest pooled scores of the
+calibration clients, and the test clients are scored against it. No model or
+threshold that decides a test client ever saw that client's data. Results
+average over the four calibration choices. --split crossfit gives the earlier
+exp26b procedure (leave-one-client-out thresholds from out-of-fold scores).
 
 CPU-only. First run caches singular values (a few minutes).
 """
-import argparse, glob, json, pathlib, re, sys, time
+import argparse, glob, json, pathlib, re, sys, time, zlib
 import numpy as np
 import torch
 from scipy.optimize import linear_sum_assignment
@@ -52,6 +64,8 @@ ALPHA = 0.05
 T_POOL = 10
 M_OT = 1500
 DRAWS = 6                   # noise draws per test adapter
+CLIP = True
+SPLIT = "strict"
 CACHE = ROOT / "results" / "cache_exp26_singular_values.npz"
 PAT = re.compile(r"campaign/(\w+?)_(flexlora|hetero_spa)_s(\d+)/adapters/round(\d+)_client(\d+)_r(\d+)__.*layers_(\d+)_self_attn_q_proj\.pt")
 
@@ -86,11 +100,18 @@ def group(meta, svals, r):
     seeds = np.array([meta[i][2] for i in idx]); layers = np.array([meta[i][6] for i in idx])
     keys = np.array([f"{meta[i][0]}_{meta[i][1]}_{meta[i][2]}_{meta[i][4]}" for i in idx])
     pub = seeds != 44
-    for L in np.unique(layers):                     # clip norm C = median norm, from public data
+    for L in np.unique(layers):                     # scale C = median norm, from public data
         m = layers == L
         C = np.median(np.linalg.norm(S[m & pub], axis=1))
         S[m] /= C
+    if CLIP:                                        # clip to norm 1: honest cores and public pool
+        S *= np.minimum(1.0, 1.0 / np.linalg.norm(S, axis=1))[:, None]
     return S, pub, keys
+
+
+def seed_of(*parts):
+    """Stable seed (Python's str hash changes between processes)."""
+    return [26] + [zlib.crc32(p.encode()) if isinstance(p, str) else int(p) for p in parts]
 
 
 class Relabeller:
@@ -180,7 +201,7 @@ def crossfit_eval(honest, attack, rng, k_folds=5, n_pool=20, n_boot=1000):
             p = np.clip(clf.predict_proba(X)[:, 1], 1e-6, 1 - 1e-6)
             for k, v in zip(ks, np.log(p / (1 - p))):
                 oof[lab].setdefault(k, []).append(v)
-    pooled = {lab: {k: np.array([np.random.default_rng(hash((k, lab, i)) % 2**32).choice(v, T_POOL).sum()
+    pooled = {lab: {k: np.array([np.random.default_rng(seed_of(k, lab, i)).choice(v, T_POOL).sum()
                                  for i in range(n_pool)]) for k, v in oof[lab].items()} for lab in (0, 1)}
     pw, fp = {}, {}
     for k in keys:
@@ -203,6 +224,74 @@ def crossfit_eval(honest, attack, rng, k_folds=5, n_pool=20, n_boot=1000):
             "fpr": float(np.mean(list(fp.values())))}
 
 
+def pool_scores(sc, aid, n_pool, seed):
+    """Pooled scores of one client: T_POOL distinct module adapters, one noise draw each."""
+    g = np.random.default_rng(seed)
+    ids = np.unique(aid)
+    by = {a: np.where(aid == a)[0] for a in ids}
+    out = np.empty(n_pool)
+    for i in range(n_pool):
+        pick = g.choice(ids, T_POOL, replace=len(ids) < T_POOL)
+        out[i] = sum(sc[g.choice(by[a])] for a in pick)
+    return out
+
+
+def strict_eval(honest, attack, rng, k_folds=5, n_pool=200, n_boot=1000):
+    """Three-way client-disjoint evaluation: train / calibrate / test.
+
+    For test fold f and calibration fold c != f, a classifier trained on the
+    other three folds is frozen; the threshold is the honest pooled scores'
+    95th percentile over calibration clients; test clients are scored with
+    both. Nothing that decides a test client saw its data. Results average
+    over the k-1 calibration choices; intervals bootstrap over test clients.
+    """
+    keys = sorted({k for k, _, _ in honest})
+    order = rng.permutation(len(keys))
+    fold = {keys[i]: j % k_folds for j, i in enumerate(order)}
+    X = {lab: {} for lab in (0, 1)}
+    for lab, rows in ((0, honest), (1, attack)):
+        for k, a, x in rows:
+            X[lab].setdefault(k, ([], []))
+            X[lab][k][0].append(a); X[lab][k][1].append(x)
+    X = {lab: {k: (np.array(a), np.array(x)) for k, (a, x) in d.items()} for lab, d in X.items()}
+    pw = {k: [] for k in keys}; fp = {k: [] for k in keys}; logit = {lab: {k: [] for k in keys} for lab in (0, 1)}
+    for f in range(k_folds):
+        for c in range(k_folds):
+            if c == f:
+                continue
+            tr = [k for k in keys if fold[k] not in (f, c)]
+            Xtr = np.concatenate([X[lab][k][1] for lab in (0, 1) for k in tr])
+            ytr = np.concatenate([np.full(len(X[lab][k][1]), lab) for lab in (0, 1) for k in tr])
+            clf = HistGradientBoostingClassifier(max_iter=300, learning_rate=0.08, random_state=0)
+            clf.fit(Xtr, ytr)
+
+            def score(lab, k):
+                p = np.clip(clf.predict_proba(X[lab][k][1])[:, 1], 1e-6, 1 - 1e-6)
+                return np.log(p / (1 - p))
+            cal = [k for k in keys if fold[k] == c]
+            thr = np.quantile(np.concatenate([pool_scores(score(0, k), X[0][k][0], n_pool, seed_of(k, 0, f, c))
+                                              for k in cal]), 1 - ALPHA)
+            for k in (k for k in keys if fold[k] == f):
+                s0, s1 = score(0, k), score(1, k)
+                logit[0][k].append(s0); logit[1][k].append(s1)
+                fp[k].append(np.mean(pool_scores(s0, X[0][k][0], n_pool, seed_of(k, 0, f, c, 1)) > thr))
+                pw[k].append(np.mean(pool_scores(s1, X[1][k][0], n_pool, seed_of(k, 1, f, c, 1)) > thr))
+    pw = {k: float(np.mean(v)) for k, v in pw.items()}; fp = {k: float(np.mean(v)) for k, v in fp.items()}
+    tsc = {lab: {k: np.mean(v, axis=0) for k, v in logit[lab].items()} for lab in (0, 1)}
+    def auc_of(ks):
+        y = np.concatenate([np.full(len(tsc[lab][k]), lab) for lab in (0, 1) for k in ks])
+        return roc_auc_score(y, np.concatenate([tsc[lab][k] for lab in (0, 1) for k in ks]))
+    boot = {"auc": [], "power": [], "fpr": []}
+    for _ in range(n_boot):
+        ks = rng.choice(keys, len(keys))
+        boot["auc"].append(auc_of(ks))
+        boot["power"].append(np.mean([pw[k] for k in ks])); boot["fpr"].append(np.mean([fp[k] for k in ks]))
+    ci = lambda v: [float(np.quantile(v, 0.025)), float(np.quantile(v, 0.975))]
+    return {"n_clients": len(keys), "auc": float(auc_of(keys)), "auc_ci": ci(boot["auc"]),
+            "power": float(np.mean(list(pw.values()))), "power_ci": ci(boot["power"]),
+            "fpr": float(np.mean(list(fp.values()))), "fpr_ci": ci(boot["fpr"])}
+
+
 def run_rank(r, S, pub, keys, rng, h_factor=0.1, public="other_seeds"):
     if public == "same_seed":
         # the cheater's model comes from other clients of the test seed (it knows P well)
@@ -223,10 +312,14 @@ def run_rank(r, S, pub, keys, rng, h_factor=0.1, public="other_seeds"):
         for kind in data:
             for i in np.where(~pub)[0]:
                 for _ in range(DRAWS):
-                    data[kind].append((keys[i], features(*transcript(kind, S[i], sigma, rel, rng), sigma, None)))
+                    data[kind].append((keys[i], i, features(*transcript(kind, S[i], sigma, rel, rng), sigma, None)))
         out = {"eps": eps, "sigma": sigma, "h": h}
         for adv in ("shaping", "relabel"):
-            out[adv] = crossfit_eval(data["honest"], data[adv], rng)
+            if SPLIT == "strict":
+                out[adv] = strict_eval(data["honest"], data[adv], rng)
+            else:
+                drop = lambda rows: [(k, x) for k, _, x in rows]
+                out[adv] = crossfit_eval(drop(data["honest"]), drop(data[adv]), rng)
         # how much does the relabeller move the learning, relative to the noise it withholds
         move = np.mean([np.linalg.norm(rel.T(s) - s) for s in S[~pub][:300]])
         out["T_shift_over_sigma_sqrt_r"] = float(move / (sigma * np.sqrt(r)))
@@ -241,27 +334,33 @@ def run_rank(r, S, pub, keys, rng, h_factor=0.1, public="other_seeds"):
 
 
 def main():
-    global FEATS, EPS
+    global FEATS, EPS, CLIP, SPLIT
     ap = argparse.ArgumentParser()
     ap.add_argument("--h", type=float, default=0.1, help="smoothing bandwidth / mean coordinate sd (0 = none)")
     ap.add_argument("--public", choices=["other_seeds", "same_seed"], default="other_seeds")
     ap.add_argument("--feats", choices=["all", "no_sort", "noise_only"], default="all")
     ap.add_argument("--ranks", type=int, nargs="+", default=RANKS)
     ap.add_argument("--eps", type=float, nargs="+", default=EPS)
+    ap.add_argument("--no-clip", action="store_true", help="skip the norm-1 clip (exp26b diagnostic)")
+    ap.add_argument("--split", choices=["strict", "crossfit"], default="strict")
     ap.add_argument("--tag", default="")
     args = ap.parse_args()
-    FEATS, EPS = args.feats, args.eps
+    FEATS, EPS, CLIP, SPLIT = args.feats, args.eps, not args.no_clip, args.split
     rng = np.random.default_rng(26)
     meta, svals = singular_values()
-    print(f"{len(svals)} adapters; h={args.h} public={args.public} feats={args.feats}")
+    print(f"{len(svals)} adapters; h={args.h} public={args.public} feats={args.feats} clip={CLIP} split={SPLIT}")
     res = []
     for r in args.ranks:
         S, pub, keys = group(meta, svals, r)
         res.append(run_rank(r, S, pub, keys, rng, args.h, args.public))
     out = {"config": {"c": C_KEEP, "alpha": ALPHA, "T": T_POOL, "eps": EPS, "draws": DRAWS,
-                      "public": args.public, "test": "seed 44", "h_factor": args.h, "feats": args.feats},
+                      "public": args.public, "test": "seed 44", "h_factor": args.h, "feats": args.feats,
+                      "clip": CLIP, "split": SPLIT,
+                      "pooling": "T distinct module adapters of a client, one noise draw each"
+                                 if SPLIT == "strict" else "T module/noise transcripts sampled with replacement"},
            "ranks": res}
-    path = ROOT / "results" / f"exp26b_practical_relabel{args.tag}.json"
+    stem = "exp26c" if (CLIP and SPLIT == "strict") else "exp26b"
+    path = ROOT / "results" / f"{stem}_practical_relabel{args.tag}.json"
     json.dump(out, open(path, "w"), indent=1)
     print(f"Saved: {path}")
 

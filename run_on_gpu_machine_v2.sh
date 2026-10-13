@@ -4,7 +4,7 @@
 # Re-evaluates the practical relabeller with client-disjoint training, threshold and scoring
 # (k-fold over clients, leave-one-client-out thresholds, bootstrap intervals over clients).
 cd "$(dirname "$0")"
-E=(python -u experiments/exp26_practical_relabel.py --eps 1 80 24000)
+E=(python -u experiments/exp26_practical_relabel.py --eps 1 80 24000 --no-clip --split crossfit)
 "${E[@]}" --tag _main                                      > results/log_exp26b_main.txt 2>&1 &
 "${E[@]}" --h 0 --tag _h0                                  > results/log_exp26b_h0.txt 2>&1 &
 "${E[@]}" --h 0 --public same_seed --tag _h0_same          > results/log_exp26b_h0_same.txt 2>&1 &
